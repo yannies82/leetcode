@@ -11,16 +11,33 @@ public class JumpGame {
 		check(new int[] { 1, 1, 0, 1 }, false);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/jump-game. This solution
+	 * checks that every position is within the max jump range until the max jump
+	 * reaches the last index. Time complexity is O(n) where n is the nums array
+	 * length.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static boolean canJump(int[] nums) {
 		int length = nums.length;
+		int lastIndex = length - 1;
 		int maxJump = nums[0];
-		int jump;
-		for (int i = 1; i < length && maxJump < length - 1; i++) {
+		for (int i = 1; i < length; i++) {
 			if (i > maxJump) {
+				// this index is not reachable by jumping from previous ones
 				return false;
-			} else if ((jump = i + nums[i]) > maxJump) {
-				maxJump = jump;
 			}
+			int jump = i + nums[i];
+			if (jump <= maxJump) {
+				continue;
+			}
+			if (jump >= lastIndex) {
+				// return true if we have reached the last index
+				return true;
+			}
+			maxJump = jump;
 		}
 		return true;
 	}

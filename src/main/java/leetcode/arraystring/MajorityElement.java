@@ -11,27 +11,14 @@ public class MajorityElement {
 		check(new int[] { 2, 2, 1, 1, 1, 2, 2 }, 2);
 	}
 
-	public static int majorityElementMap(int[] nums) {
-		Map<Integer, Integer> countMap = new HashMap<>();
-		int n = nums.length;
-		int majorityLimit = n / 2;
-		int count = 1;
-		for (int i = 0; i < n; i++) {
-			Integer countObj = countMap.get(nums[i]);
-			if (countObj == null) {
-				count = 1;
-			} else {
-				count = countObj.intValue() + 1;
-			}
-			if (count > majorityLimit) {
-				return nums[i];
-			} else {
-				countMap.put(nums[i], count);
-			}
-		}
-		return -1;
-	}
-
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/majority-element. This
+	 * solution uses the Moore Voting algorithm to find the majority element. Time
+	 * complexity is O(n) where n is the length of the nums array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static int majorityElementMooreVoting(int[] nums) {
 		int count = 1;
 		int candidate = nums[0];
@@ -46,6 +33,36 @@ public class MajorityElement {
 			}
 		}
 		return candidate;
+	}
+
+	/**
+	 * This implementation uses a map to store the of occurrences for each number in
+	 * the array and terminates when the occurrences of a number exceed n/2. Time
+	 * complexity is O(n) where n is the length of the nums array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public static int majorityElementMap(int[] nums) {
+		Map<Integer, Integer> countMap = new HashMap<>();
+		int n = nums.length;
+		int majorityLimit = n / 2;
+		int count = 1;
+		for (int i = 0; i < n; i++) {
+			Integer countObj = countMap.get(nums[i]);
+			if (countObj == null) {
+				count = 1;
+			} else {
+				count = countObj + 1;
+			}
+			// terminate if the count has already exceeded the majority limit
+			if (count > majorityLimit) {
+				return nums[i];
+			} else {
+				countMap.put(nums[i], count);
+			}
+		}
+		return -1;
 	}
 
 	private static void check(int[] nums, int expectedMajorityElement) {

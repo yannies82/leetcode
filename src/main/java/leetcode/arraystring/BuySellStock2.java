@@ -10,25 +10,42 @@ public class BuySellStock2 {
 		check(new int[] { 7, 6, 4, 3, 1 }, 0);
 	}
 
+	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii. This
+	 * solution compares each price with the previous one and if it is greater it
+	 * adds the difference to the total profit. Time complexity is O(n) where n is
+	 * the length of the prices array.
+	 * 
+	 * @param prices
+	 * @return
+	 */
 	public static int maxProfit(int[] prices) {
 		int length = prices.length;
-		int minFound = prices[0];
-		int maxProfit = 0;
 		int totalProfit = 0;
-		int profit;
 		for (int i = 1; i < length; i++) {
-			if (prices[i] < prices[i - 1]) {
-				minFound = prices[i];
-				totalProfit += maxProfit;
-				maxProfit = 0;
-			} else {
-				profit = prices[i] - minFound;
-				if (profit > maxProfit) {
-					maxProfit = profit;
-				}
+			if (prices[i] > prices[i - 1]) {
+				totalProfit += prices[i] - prices[i - 1];
 			}
 		}
-		totalProfit += maxProfit;
+		return totalProfit;
+	}
+
+	/**
+	 * This is the same solution as the above one except for it uses a bit
+	 * manipulation hack to avoid branching when adding to the total profit.
+	 * 
+	 * @param prices
+	 * @return
+	 */
+	public static int maxProfit2(int[] prices) {
+		int length = prices.length;
+		int totalProfit = 0;
+		for (int i = 1; i < length; i++) {
+			int diff = prices[i] - prices[i - 1];
+			// if diff is negative or 0, 0 will be added to the total profit
+			totalProfit += -(diff >>> 31) * diff + diff;
+		}
 		return totalProfit;
 	}
 
