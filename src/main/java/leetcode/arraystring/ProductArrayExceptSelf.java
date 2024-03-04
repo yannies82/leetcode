@@ -9,15 +9,31 @@ public class ProductArrayExceptSelf {
 		check(new int[] { -1, 1, 0, -3, 3 }, new int[] { 0, 0, 9, 0, 0 });
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/product-of-array-except-self.
+	 * This solution traverses the input array to calculate the product of all
+	 * elements left of the current one and stores them in the result array. It then
+	 * traverses the input array in reverse order to calculate the product of all
+	 * elements right of the current one and stores the left * right products for
+	 * each position. Time complexity is O(n) where n is the length of the nums
+	 * array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static int[] productExceptSelf(int[] nums) {
 		int length = nums.length;
 		int[] answer = new int[length];
 		int temp = 1;
+		// traverse array and store the product of all elements left of the current one
 		for (int i = 0; i < length; i++) {
 			answer[i] = temp;
 			temp *= nums[i];
 		}
 		temp = 1;
+		// traverse array backwards and store the product of all elements right of the
+		// current one multiplied with the left product that was already stored from
+		// the previous iteration
 		for (int i = length - 1; i >= 0; i--) {
 			answer[i] *= temp;
 			temp *= nums[i];
@@ -25,6 +41,14 @@ public class ProductArrayExceptSelf {
 		return answer;
 	}
 
+	/**
+	 * This solution calculates the product of all elements in the array and divides
+	 * the product with each element to get the result array. Time complexity is
+	 * O(n) where n is the length of the nums array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static int[] productExceptSelf2(int[] nums) {
 		int length = nums.length;
 		int[] answer = new int[length];
@@ -49,6 +73,15 @@ public class ProductArrayExceptSelf {
 		return answer;
 	}
 
+	/**
+	 * This solution finds the frequency of each number and calculates the result
+	 * for each position. It takes advantage of the limited input range [-30...30]
+	 * for the array elements. Time complexity is O(n*m) where n is the length of
+	 * the nums array and m is the input range (in this case 61).
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static int[] productExceptSelf3(int[] nums) {
 		int length = nums.length;
 		int[] answer = new int[length];
