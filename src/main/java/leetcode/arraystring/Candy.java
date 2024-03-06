@@ -14,6 +14,17 @@ public class Candy {
 
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/candy. This solution always
+	 * assigns the minimum amount of candies possible to every child. If the amount
+	 * to be assigned is 0 then an extra candy is retroactively given to every child
+	 * until the last non decreasing index, so that we can assign 1 candy to the
+	 * current child. Time complexity is O(n) where n is the length of the ratings
+	 * array.
+	 * 
+	 * @param ratings
+	 * @return
+	 */
 	public static int candy(int[] ratings) {
 		int length = ratings.length;
 		int totalCandies = 1;
@@ -21,21 +32,41 @@ public class Candy {
 		int lastNonDecrIndex = 0;
 		int lastNonDecrCandies = 1;
 		int candies;
+		// iterate all candies starting from the second one
 		for (int i = 1; i < length; i++) {
 			if (ratings[i] > ratings[i - 1]) {
+				// current kid has higher rating than previous one and should have one more
+				// candy
 				candies = previousCandies + 1;
+				// update last non decreasing index and candies
 				lastNonDecrIndex = i;
 				lastNonDecrCandies = candies;
 			} else if (ratings[i] < ratings[i - 1]) {
+				// current kid has lower rating than previous one and should have the minimum
+				// number of candies (1)
 				candies = 1;
 				if (previousCandies == 1) {
-					totalCandies += i - lastNonDecrIndex - (lastNonDecrCandies > i - lastNonDecrIndex ? 1 : 0);
+					// the previous kid also had one candy but had higher rating, we should
+					// compensate give one more candy to all kids until the last non decreasing
+					// index
+					int candiesOffset = i - lastNonDecrIndex;
+					if (lastNonDecrCandies > candiesOffset) {
+						// if the child at last non decreasing index already had more candies than the
+						// next one after compensating, do not give another candy to it
+						totalCandies += candiesOffset - 1;
+					} else {
+						totalCandies += candiesOffset;
+					}
 				}
 			} else {
+				// current kid has the same rating as the previous one and should have the
+				// minimum number of candies (1)
 				candies = 1;
+				// update last non decreasing index and candies
 				lastNonDecrIndex = i;
 				lastNonDecrCandies = 1;
 			}
+			// update total number of candies and the previous child candies
 			totalCandies += candies;
 			previousCandies = candies;
 		}

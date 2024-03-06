@@ -9,30 +9,56 @@ public class TrapRainWater {
 		check(new int[] { 4, 2, 0, 3, 2, 5 }, 9);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/trapping-rain-water. This
+	 * solution iterates all heights and calculates the trapped rain water assuming
+	 * that there is a wall of infinite height at the end of the heights array. It
+	 * then iterates the heights array again in reverse order up to the index of the
+	 * maxHeight in order to calculate the correct trap water for this section and
+	 * compensate for the assumption of the infinite wall. Time complexity is O(n)
+	 * where n is the length of the heigths array.
+	 * 
+	 * @param height
+	 * @return
+	 */
 	public static int trap(int[] height) {
 		int length = height.length;
 		int topIndex = -1;
 		int topHeight = 0;
 		int totalAmount = 0;
+		// iterate the array, calculate the trapped water assuming that there is a top
+		// height
+		// on the left side and an infinite height on the right side
 		for (int i = 0; i < length; i++) {
 			if (height[i] < topHeight) {
+				// height is less than the top height, calculate trapped water
 				totalAmount += topHeight - height[i];
 			} else {
+				// height is less than the top height, update top height and index
 				topIndex = i;
 				topHeight = height[i];
 			}
 		}
+		// keep the max height and its index
 		int maxIndex = topIndex;
 		int maxHeight = topHeight;
 		topIndex = -1;
 		topHeight = 0;
+		// iterate the array again in reverse order until the max height index
+		// assume top height on the right side and max height on the left side
+		// (which will always be greater or equal to the right side)
 		for (int i = length - 1; i > maxIndex; i--) {
 			if (height[i] < topHeight) {
+				// height is less than the top height, calculate trapped water
 				totalAmount += topHeight - height[i];
 			} else {
+				// height is less than the top height, update top height and index
 				topIndex = i;
 				topHeight = height[i];
 			}
+			// compensate for the assumption of the infinite wall in the first iteration
+			// by subtracting the difference of this height to max height from the total
+			// amount
 			totalAmount -= maxHeight - height[i];
 		}
 		return totalAmount;
