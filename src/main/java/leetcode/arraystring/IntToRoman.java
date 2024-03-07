@@ -8,7 +8,88 @@ public class IntToRoman {
 		check(1994, "MCMXCIV");
 	}
 
+	/**
+	 * This solution maps the number digits to the respective combination of roman
+	 * letters. Time complexity is O(n) where n is the number of digits of the
+	 * number.
+	 * 
+	 * @param num
+	 * @return
+	 */
 	public static String intToRoman(int num) {
+		StringBuilder builder = new StringBuilder();
+		int index = 0;
+		String unitChar;
+		String fiveChar;
+		String tenChar;
+		do {
+			int mod = num % 10;
+			switch (index) {
+			case 0:
+				unitChar = "I";
+				fiveChar = "V";
+				tenChar = "X";
+				break;
+			case 1:
+				unitChar = "X";
+				fiveChar = "L";
+				tenChar = "C";
+				break;
+			case 2:
+				unitChar = "C";
+				fiveChar = "D";
+				tenChar = "M";
+				break;
+			default:
+				unitChar = "M";
+				fiveChar = "";
+				tenChar = "";
+				break;
+			}
+			switch (mod) {
+			case 9:
+				builder.insert(0, tenChar).insert(0, unitChar);
+				break;
+			case 8:
+				builder.insert(0, unitChar).insert(0, unitChar).insert(0, unitChar).insert(0, fiveChar);
+				break;
+			case 7:
+				builder.insert(0, unitChar).insert(0, unitChar).insert(0, fiveChar);
+				break;
+			case 6:
+				builder.insert(0, unitChar).insert(0, fiveChar);
+				break;
+			case 5:
+				builder.insert(0, fiveChar);
+				break;
+			case 4:
+				builder.insert(0, fiveChar).insert(0, unitChar);
+				break;
+			case 3:
+				builder.insert(0, unitChar);
+			case 2:
+				builder.insert(0, unitChar);
+			case 1:
+				builder.insert(0, unitChar);
+				break;
+			default:
+				break;
+			}
+			;
+			num = num / 10;
+			index++;
+		} while (num > 0);
+		return builder.toString();
+	}
+
+	/**
+	 * Alternate solution, traverses the digits from greatest order to lesser order.
+	 * Time complexity is O(n) where n is the number of digits of the number.
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public static String intToRoman2(int num) {
 		StringBuilder builder = new StringBuilder();
 		int factor = (int) Math.pow(10, Integer.toString(num).length() - 1);
 		String unitChar;

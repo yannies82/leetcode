@@ -7,30 +7,45 @@ public class ReverseWordsInString {
 		check("  hello world  ", "world hello");
 	}
 
+	/**
+	 * This solution traverses the string from end to start and writes all
+	 * encountered words to the result builder. Time complexity is O(n) where n is
+	 * the length of string s.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static String reverseWords(String s) {
 		int length = s.length();
 		StringBuilder result = new StringBuilder();
 		int wordEndIndex = -1;
+		// iterate all characters starting from the last one
 		for (int i = length - 1; i >= 0; i--) {
 			if (s.charAt(i) == ' ') {
 				if (wordEndIndex > 0) {
+					// the character is space and a is before the start of a word
+					// write the word to the result
 					for (int j = i + 1; j < wordEndIndex; j++) {
 						result.append(s.charAt(j));
 					}
+					// write single space
 					result.append(" ");
 					wordEndIndex = -1;
 				}
 			} else {
 				if (wordEndIndex < 0) {
+					// mark the end of the word if this is the last word character
 					wordEndIndex = i + 1;
 				}
 			}
 		}
 		if (wordEndIndex >= 0) {
+			// write the last word
 			for (int j = 0; j < wordEndIndex; j++) {
 				result.append(s.charAt(j));
 			}
 		} else {
+			// no more words exist, delete trailing space
 			result.deleteCharAt(result.length() - 1);
 		}
 		return result.toString();

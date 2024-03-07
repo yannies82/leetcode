@@ -8,6 +8,12 @@ public class LengthOfLastWord {
 		check("luffy is still joyboy", 6);
 	}
 
+	/**
+	 * Time complexity is O(n) where n is the length of string s.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static int lengthOfLastWord(String s) {
 		int length = s.length();
 		int lastWordLength = 0;
