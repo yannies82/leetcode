@@ -8,6 +8,7 @@ public class ReverseWordsInString {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/reverse-words-in-a-string.
 	 * This solution traverses the string from end to start and writes all
 	 * encountered words to the result builder. Time complexity is O(n) where n is
 	 * the length of string s.

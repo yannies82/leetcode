@@ -9,7 +9,19 @@ public class FirstOccurenceInString {
 		check("mississippi", "pi", 9);
 	}
 
-	public static int strStr2(String haystack, String needle) {
+	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string.
+	 * This solution searches for occurences of the first character of needle in
+	 * haystack, then searches for the rest of the needle characters starting from
+	 * that index. Time complexity is O(n * m) where n is the haystack length and m
+	 * is the needle length.
+	 * 
+	 * @param haystack
+	 * @param needle
+	 * @return
+	 */
+	public static int strStr(String haystack, String needle) {
 		int length = haystack.length();
 		int needleLength = needle.length();
 		int max = length - needleLength;
@@ -32,7 +44,7 @@ public class FirstOccurenceInString {
 		return -1;
 	}
 
-	public static int strStr(String haystack, String needle) {
+	public static int strStr2(String haystack, String needle) {
 		int length = haystack.length();
 		int needleLength = needle.length();
 		int max = length - needleLength;

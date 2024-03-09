@@ -21,20 +21,37 @@ public class TextJustification {
 						"for your country"));
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/text-justification. This
+	 * solution traverses all words and builds a new row when maxWidth is reached,
+	 * taking spaces into consideration. Time complexity is O(n^2) where n is the
+	 * length of the words array.
+	 * 
+	 * @param words
+	 * @param maxWidth
+	 * @return
+	 */
 	public static List<String> fullJustify(String[] words, int maxWidth) {
 		int wordsCount = words.length;
 		int currentWidth = 0;
 		List<String> result = new ArrayList<>();
 		StringBuilder builder = new StringBuilder();
 		int startIndex = 0;
+		// traverse all words
 		for (int i = 0; i < wordsCount; i++) {
 			currentWidth += words[i].length();
+			// check if this is the last word or if adding the next word will exceed the
+			// maxWidth for this line
+			// (taking ito consideration one space between words as minimum)
 			if (i == wordsCount - 1 || currentWidth + words[i + 1].length() + i + 1 - startIndex > maxWidth) {
+				// either this is the last word or adding the next word will exceed the maxWidth
+				// for this line (taking ito consideration one space between words as minimum)
 				int numOfWords = i + 1 - startIndex;
 				int numOfSpaces = maxWidth - currentWidth;
 				int spacesPerWord = numOfWords == 1 ? 0 : numOfSpaces / (numOfWords - 1);
 				int leftoverSpaces = numOfWords == 1 ? 0 : numOfSpaces % (numOfWords - 1);
 				for (int j = startIndex; j <= i; j++) {
+					// append all words and spaces between
 					builder.append(words[j]);
 					if (i == wordsCount - 1) {
 						if (builder.length() < maxWidth) {

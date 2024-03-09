@@ -9,7 +9,8 @@ public class IntToRoman {
 	}
 
 	/**
-	 * This solution maps the number digits to the respective combination of roman
+	 * Leetcode problem: https://leetcode.com/problems/integer-to-roman. This
+	 * solution maps the number digits to the respective combination of roman
 	 * letters. Time complexity is O(n) where n is the number of digits of the
 	 * number.
 	 * 

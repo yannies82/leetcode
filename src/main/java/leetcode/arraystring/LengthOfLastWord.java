@@ -9,7 +9,8 @@ public class LengthOfLastWord {
 	}
 
 	/**
-	 * Time complexity is O(n) where n is the length of string s.
+	 * Leetcode problem: https://leetcode.com/problems/length-of-last-word. Time
+	 * complexity is O(n) where n is the length of string s.
 	 * 
 	 * @param s
 	 * @return

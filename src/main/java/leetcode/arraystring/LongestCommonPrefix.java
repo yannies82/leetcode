@@ -11,9 +11,10 @@ public class LongestCommonPrefix {
 	}
 
 	/**
-	 * This solution compares the letters of all words at the same index until one
-	 * of them is different. Time complexity is O(n * m) where n is the min word
-	 * length and m is the number of strings int the array.
+	 * Leetcode problem: https://leetcode.com/problems/longest-common-prefix. This
+	 * solution compares the letters of all words at the same index until one of
+	 * them is different. Time complexity is O(n * m) where n is the min word length
+	 * and m is the number of strings int the array.
 	 * 
 	 * @param strs
 	 * @return
