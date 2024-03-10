@@ -3,11 +3,42 @@ package leetcode.twopointers;
 public class IsSubsequence {
 
 	public static void main(String[] args) {
+		check("abbc", "ahbdc", false);
+		check("b", "abc", true);
 		check("abc", "ahbgdc", true);
 		check("axc", "ahbgdc", false);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/is-subsequence. This solution
+	 * uses two pointers. Time complexity is O(n) where n is the length of string t.
+	 * 
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public static boolean isSubsequence(String s, String t) {
+		int sLength = s.length();
+		int tLength = t.length();
+		if (tLength < sLength) {
+			return false;
+		}
+		int i = -1;
+		int j = tLength;
+		int indexStart = 0;
+		int indexEnd = sLength - 1;
+		while (++i <= --j && indexStart <= indexEnd) {
+			if (s.charAt(indexStart) == t.charAt(i)) {
+				indexStart++;
+			}
+			if (i < j && s.charAt(indexEnd) == t.charAt(j)) {
+				indexEnd--;
+			}
+		}
+		return indexStart > indexEnd;
+	}
+
+	public static boolean isSubsequence3(String s, String t) {
 		int sLength = s.length();
 		int tLength = t.length();
 		if (tLength < sLength) {
