@@ -10,6 +10,15 @@ public class ContainerMostWater {
 		check(new int[] { 1, 1 }, 1);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/container-with-most-water.
+	 * This solution uses two pointers. At each step it calculates the current area
+	 * and converges the pointer with the smaller height. Time complexity is O(n)
+	 * where n is the length of the height array.
+	 * 
+	 * @param height
+	 * @return
+	 */
 	public static int maxArea(int[] height) {
 		int length = height.length;
 		int left = 0;

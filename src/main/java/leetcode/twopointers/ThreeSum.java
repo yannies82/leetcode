@@ -2,20 +2,61 @@ package leetcode.twopointers;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ThreeSum {
 
 	public static void main(String[] args) {
+		check(new int[] { -1, 0, 1, 2, -1, -4 }, List.of(List.of(-1, -1, 2), List.of(-1, 0, 1)));
 		check(new int[] { -2, 0, 1, 1, 2 }, List.of(List.of(-2, 0, 2), List.of(-2, 1, 1)));
 		check(new int[] { 3, 0, -2, -1, 1, 2 }, List.of(List.of(-2, -1, 3), List.of(-2, 0, 2), List.of(-1, 0, 1)));
 		check(new int[] { 0, 0, 0, 0 }, List.of(List.of(0, 0, 0)));
-		check(new int[] { -1, 0, 1, 2, -1, -4 }, List.of(List.of(-1, -1, 2), List.of(-1, 0, 1)));
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/3sum. This solution sorts the
+	 * input array, then takes each element at position i and tries to calculate all
+	 * elements at positions j and k where i < j < k and nums[j] + nums[k] ==
+	 * -nums[i]. Time complexity is O(n^2) where n is the length of the nums array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static List<List<Integer>> threeSum(int[] nums) {
+		int length = nums.length;
+		int lastIndex = length - 1;
+		Arrays.sort(nums);
+		List<List<Integer>> result = new ArrayList<>();
+		for (int i = 0; i < length - 2; i++) {
+			if (nums[i] > 0) {
+				break;
+			}
+			if (i == 0 || nums[i] > nums[i - 1]) {
+				int left = i + 1;
+				int right = lastIndex;
+				int target = -nums[i];
+				int sum;
+				while (left < right && nums[left] <= target) {
+					if (left > i + 1 && nums[left] == nums[left - 1]) {
+						left++;
+					} else if (right < length - 1 && nums[right] == nums[right + 1]) {
+						right--;
+					} else if ((sum = nums[left] + nums[right]) == target) {
+						result.add(List.of(nums[i], nums[left], nums[right]));
+						left++;
+						right--;
+					} else if (sum < target) {
+						left++;
+					} else {
+						right--;
+					}
+				}
+			}
+		}
+		return result;
+	}
+
+	public static List<List<Integer>> threeSum2(int[] nums) {
 		int length = nums.length;
 		Arrays.sort(nums);
 		List<List<Integer>> result = new ArrayList<>();
@@ -39,28 +80,6 @@ public class ThreeSum {
 						left++;
 					} else {
 						right--;
-					}
-				}
-			}
-		}
-		return result;
-	}
-
-	public static List<List<Integer>> threeSum2(int[] nums) {
-		int length = nums.length;
-		List<List<Integer>> result = new ArrayList<>();
-		Set<Integer> hash = new HashSet<>();
-		int absSum;
-		for (int i = 0; i < length - 2; i++) {
-			for (int j = i + 1; j < length - 1; j++) {
-				for (int k = j + 1; k < length; k++) {
-					if (nums[i] + nums[j] + nums[k] == 0) {
-						absSum = nums[i] * nums[i] * nums[i] + nums[j] * nums[j] * nums[j]
-								+ nums[k] * nums[k] * nums[k];
-						if (hash.add(absSum)) {
-							result.add(List.of(nums[i], nums[j], nums[k]));
-						}
-
 					}
 				}
 			}

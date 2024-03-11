@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class TwoSum2 {
 
 	public static void main(String[] args) {
-		check(new int[] {-10,-8,-2,1,2,5,6}, 0, new int[] {3, 5});
+		check(new int[] { -10, -8, -2, 1, 2, 5, 6 }, 0, new int[] { 3, 5 });
 		check(new int[] { 3, 24, 50, 79, 88, 150, 345 }, 200, new int[] { 3, 6 });
 		int[] arr = new int[30000];
 		for (int i = 0; i < 29998; i++) {
@@ -22,16 +22,31 @@ public class TwoSum2 {
 		check(new int[] { -1, 0 }, -1, new int[] { 1, 2 });
 	}
 
+	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/two-sum-ii-input-array-is-sorted. This solution
+	 * uses two pointers, one at the start and one at the end of the array. As an
+	 * optimization pointers converge in logarithmic fashion. Time complexity is
+	 * O(n) where n is the length of the numbers array.
+	 * 
+	 * 
+	 * @param numbers
+	 * @param target
+	 * @return
+	 */
 	public static int[] twoSum(int[] numbers, int target) {
 		int length = numbers.length;
 		int left = 0;
 		int right = length - 1;
 		int adjustedLeft;
+		// converge left pointer in logarithmic steps instead of linear, while the sum is less than target
 		while ((adjustedLeft = left + (right - left) / 2) > left && numbers[adjustedLeft] + numbers[right] < target) {
 			left = adjustedLeft;
 		}
 		int adjustedRight;
-		while ((adjustedRight = right - (right - left) / 2) < right && adjustedRight > left && numbers[adjustedRight] + numbers[left] > target) {
+		// converge right pointer in logarithmic steps instead of linear, while the sum is greater than target
+		while ((adjustedRight = right - (right - left) / 2) < right && adjustedRight > left
+				&& numbers[adjustedRight] + numbers[left] > target) {
 			right = adjustedRight;
 		}
 		int sum;
@@ -48,6 +63,20 @@ public class TwoSum2 {
 	}
 
 	public static int[] twoSum2(int[] numbers, int target) {
+		int start = 0;
+		int end = numbers.length - 1;
+		int sum;
+		while (start < end && (sum = numbers[start] + numbers[end]) != target) {
+			if (sum < target) {
+				start++;
+			} else {
+				end--;
+			}
+		}
+		return start < end ? new int[] { start + 1, end + 1 } : null;
+	}
+
+	public static int[] twoSum3(int[] numbers, int target) {
 		int length = numbers.length;
 		int index1 = 0;
 		int index2 = 1;
@@ -65,7 +94,7 @@ public class TwoSum2 {
 		return new int[] { 0, 0 };
 	}
 
-	public static int[] twoSum3(int[] numbers, int target) {
+	public static int[] twoSum4(int[] numbers, int target) {
 		int length = numbers.length;
 		int index1 = 0;
 		int low = 0;
