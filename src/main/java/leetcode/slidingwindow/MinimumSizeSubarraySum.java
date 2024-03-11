@@ -11,6 +11,16 @@ public class MinimumSizeSubarraySum {
 		check(new int[] { 1, 1, 1, 1, 1, 1, 1, 1 }, 11, 0);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/minimum-size-subarray-sum.
+	 * This solution uses a sliding window. The window increases until the sum
+	 * exceeds the target. It then decreases until the sum is less than the target.
+	 * Time complexity is O(n) where n is the length of the nums array.
+	 * 
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
 	public static int minSubArrayLen(int[] nums, int target) {
 		int length = nums.length;
 		int start = 0;
