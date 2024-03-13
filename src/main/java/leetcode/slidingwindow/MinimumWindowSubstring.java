@@ -13,6 +13,18 @@ public class MinimumWindowSubstring {
 		check("a", "aa", "");
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/minimum-window-substring.
+	 * This solution keeps the count of all characters that appear in string t. It
+	 * then uses a sliding window to traverse characters of string s. The window is
+	 * expanded until all characters of string t are encountered in string s. Then
+	 * the window is shrank until 1 character of t is missing. Time complexity is
+	 * O(n) where n is the length of string s.
+	 * 
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public static String minWindow(String s, String t) {
 		int sLength = s.length();
 		int tLength = t.length();
@@ -20,22 +32,30 @@ public class MinimumWindowSubstring {
 			return "";
 		int[] chars = new int[128];
 		int count = 0;
+		// keep count of all characters in string t
 		for (int i = 0; i < tLength; i++) {
 			chars[t.charAt(i)]++;
 		}
+		// initialize minLength to an out of range value
 		int minLength = sLength + 1;
 		char nextChar;
 		int length;
 		int start = 0;
 		int resultStart = -1;
 		int[] tempChars = new int[128];
+		// traverse all characters of string s, increasing the sliding window size
 		for (int i = 0; i < sLength; i++) {
 			nextChar = s.charAt(i);
 			if (chars[nextChar] > 0) {
+				// this character exists in string t, increase count in temp chars
 				if (++tempChars[nextChar] <= chars[nextChar]) {
+					// increase count of total found t characters if the occurences of this char
+					// in string s do not exceed the occurences in string t
 					count++;
 				}
 				if (count == tLength) {
+					// all characters of string t are inside the sliding window
+					// shrink the sliding window until one of the characters of string t is out
 					while (chars[(nextChar = s.charAt(start))] == 0 || tempChars[nextChar] > chars[nextChar]) {
 						if (tempChars[nextChar] > chars[nextChar]) {
 							tempChars[nextChar]--;
@@ -44,12 +64,15 @@ public class MinimumWindowSubstring {
 					}
 					length = i - start + 1;
 					if (length < minLength) {
+						// update the min length of the result substring and its starting position
 						minLength = length;
 						resultStart = start;
 					}
 				}
 			}
 		}
+		// return result substring or empty string if no suitable substring has been
+		// found
 		return resultStart == -1 ? "" : s.substring(resultStart, resultStart + minLength);
 	}
 

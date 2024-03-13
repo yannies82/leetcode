@@ -18,38 +18,66 @@ public class SubstringWithConcatenationAllWords {
 		check("barfoofoobarthefoobarman", new String[] { "bar", "foo", "the" }, List.of(6, 9, 12));
 	}
 
+	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/substring-with-concatenation-of-all-words. This
+	 * solution finds the word length and the expected substring length and checks
+	 * all possible substrings of s with the same length to find if they contain all
+	 * of the expected words. Time complexity is O(k * n /k) = O(n) where n is the
+	 * length of string s and k is the word length.
+	 * 
+	 * @param s
+	 * @param words
+	 * @return
+	 */
 	public static List<Integer> findSubstring(String s, String[] words) {
 		int length = s.length();
 		int wordsCount = words.length;
 		int wordLength = words[0].length();
 		int expectedSize = wordLength * wordsCount;
-		if (length < expectedSize)
+		if (length < expectedSize) {
+			// early exit if the expected size of the substring is greater than the length
+			// of string s
 			return Collections.emptyList();
+		}
 		Map<String, Integer> wordsMap = new HashMap<>();
+		// add all words to a map, along with their occurences in the words array
 		for (String word : words) {
 			wordsMap.put(word, wordsMap.getOrDefault(word, 0) + 1);
 		}
 		List<Integer> result = new ArrayList<>();
 		int limit = length - wordLength;
 		String[] tokens = new String[length];
+		// iterate string s from all possible starting positions (equal to word length)
 		for (int i = 0; i < wordLength; i++) {
 			Map<String, Integer> tempMap = new HashMap<>();
 			int start = i;
 			int count = 0;
+			// iterate string s with word length increments
 			for (int j = i; j <= limit; j += wordLength) {
 				tokens[j] = s.substring(j, j + wordLength);
 				if (wordsMap.containsKey(tokens[j])) {
+					// every time an expected token is found add to the temp map and increase count
 					tempMap.put(tokens[j], tempMap.getOrDefault(tokens[j], 0) + 1);
 					count++;
 					if (count == wordsCount) {
+						// if the tokens found are equal to the number of expected words compare
+						// the temp map with the expected words map and add the start index to the
+						// results
+						// if they are equal
 						if (tempMap.equals(wordsMap)) {
 							result.add(start);
 						}
+						// slide the window by removing an occurence of the token starting at start
+						// index
+						// and by increasing the start index by word length
 						tempMap.put(tokens[start], tempMap.get(tokens[start]) - 1);
 						start += wordLength;
 						count--;
 					}
 				} else {
+					// a non expected token was found
+					// resume start from next token after resetting temp map and count
 					start = j + wordLength;
 					count = 0;
 					tempMap.clear();
