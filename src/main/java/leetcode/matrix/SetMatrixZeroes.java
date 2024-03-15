@@ -13,16 +13,29 @@ public class SetMatrixZeroes {
 				new int[][] { { 0, 0, 3, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } });
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/set-matrix-zeroes. This
+	 * solution searches all positions except for first column. If the position i, j
+	 * has a 0 then the positions i, 0 and 0, j are set to 0. It then traverses all
+	 * positions except for first row and first column and sets all i, j positions
+	 * to 0 if positions i, 0 or 0, j are 0. Time complexity is O(m * n) where m is
+	 * the number of rows and n is the number of columns.
+	 * 
+	 * @param matrix
+	 */
 	public static void setZeroes(int[][] matrix) {
 		int rowCount = matrix.length;
 		int columnCount = matrix[0].length;
 		int temp = 1;
+		// temp should be 0 if the first column contains a 0, should be 1 otherwise
 		for (int i = 0; i < rowCount; i++) {
 			if (matrix[i][0] == 0) {
 				temp = 0;
 				break;
 			}
 		}
+		// traverse all positions exxcept for first column
+		// if position i, j is 0 set positions i, 0 and 0, j to 0
 		for (int i = 0; i < rowCount; i++) {
 			for (int j = 1; j < columnCount; j++) {
 				if (matrix[i][j] == 0) {
@@ -31,6 +44,8 @@ public class SetMatrixZeroes {
 				}
 			}
 		}
+		// traverse all positions except for first row and first column
+		// if positions i, 0 or 0, j are 0 set position i, j to 0
 		for (int i = 1; i < rowCount; i++) {
 			for (int j = 1; j < columnCount; j++) {
 				if (matrix[i][0] == 0 || matrix[0][j] == 0) {
@@ -38,11 +53,13 @@ public class SetMatrixZeroes {
 				}
 			}
 		}
+		// if position 0, 0 is 0 set first row positions to 0
 		for (int i = 0; i < columnCount; i++) {
 			if (matrix[0][0] == 0) {
 				matrix[0][i] = 0;
 			}
 		}
+		// if temp is 0 set first column positions to 0
 		for (int i = 0; i < rowCount; i++) {
 			if (temp == 0) {
 				matrix[i][0] = 0;
@@ -50,6 +67,13 @@ public class SetMatrixZeroes {
 		}
 	}
 
+	/**
+	 * Alternate solution, simpler and possibly faster but uses O(m+n) extra space
+	 * instead of O(1). Time complexity is O(m * n) where m is the number of rows
+	 * and n is the number of columns.
+	 * 
+	 * @param matrix
+	 */
 	public static void setZeroes2(int[][] matrix) {
 		int rowCount = matrix.length;
 		int columnCount = matrix[0].length;
@@ -71,9 +95,6 @@ public class SetMatrixZeroes {
 			}
 		}
 	}
-
-	// βασιλικη
-	// γιαννης
 
 	private static void check(int[][] matrix, int[][] expectedMatrix) {
 		System.out.println("matrix is: ");

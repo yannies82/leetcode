@@ -9,27 +9,39 @@ public class RotateImage {
 				new int[][] { { 15, 13, 2, 5 }, { 14, 3, 4, 1 }, { 12, 6, 8, 9 }, { 16, 7, 10, 11 } });
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/rotate-image. This solution
+	 * rotates the outer layer of the matrix then moves to the next layer until
+	 * there are no positions left. Time complexity is O(n^2) where n is the length
+	 * of the side of the matrix.
+	 * 
+	 * @param matrix
+	 */
 	public static void rotate(int[][] matrix) {
 		int length = matrix.length;
 		int start = 0;
 		int end = length - 1;
-		int temp;
-		while (start < end && start < end) {
+		// rotate one layer for each iteration
+		while (start < end) {
+			// swap first row with first column
 			for (int i = start; i <= end; i++) {
-				temp = matrix[i][start];
+				int temp = matrix[i][start];
 				matrix[i][start] = matrix[start][end - i + start];
 				matrix[start][end - i + start] = temp;
 			}
+			// swap first column with last row
 			for (int i = start + 1; i <= end; i++) {
-				temp = matrix[end][i];
+				int temp = matrix[end][i];
 				matrix[end][i] = matrix[i][start];
 				matrix[i][start] = temp;
 			}
+			// swap last column with last row
 			for (int i = start + 1; i < end; i++) {
-				temp = matrix[i][end];
+				int temp = matrix[i][end];
 				matrix[i][end] = matrix[end][end - i + start];
 				matrix[end][end - i + start] = temp;
 			}
+			// move to the next layer
 			start++;
 			end--;
 		}
