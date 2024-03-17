@@ -15,23 +15,40 @@ public class GroupAnagrams {
 		check(new String[] { "a" }, List.of(List.of("a")));
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/group-anagrams. This solution
+	 * sorts each word and keeps a map of the sorted word and the list of anagrams.
+	 * Time complexity is O(n*m*logm) where n is the length of the strs array and m
+	 * is the length of each word in strs.
+	 * 
+	 * @param strs
+	 * @return
+	 */
 	public static List<List<String>> groupAnagrams(String[] strs) {
-		List<List<String>> result = new ArrayList<>();
-		Map<String, Integer> indexMap = new HashMap<>();
+		// keeps a map where the key is the sorted word and the value
+		// is the list of anagrams
+		Map<String, List<String>> indexMap = new HashMap<>();
+		// iterate all words
 		for (int i = 0; i < strs.length; i++) {
 			String word = strs[i];
 			char[] chars = word.toCharArray();
+			// sort word and add it to the appropriate list of the map
+			// where the key is the sorted word
 			Arrays.sort(chars);
 			String sortedWord = new String(chars);
+			// the following line can replace lines 42-48
+			// it is more readable but has slightly worse performance
+			// indexMap.computeIfAbsent(sortedWord, k -> new ArrayList<>()).add(word);
 			if (indexMap.containsKey(sortedWord)) {
-				result.get(indexMap.get(sortedWord)).add(word);
+				indexMap.get(sortedWord).add(word);
 			} else {
 				List<String> newList = new ArrayList<>();
 				newList.add(word);
-				indexMap.put(sortedWord, result.size());
-				result.add(newList);
+				indexMap.put(sortedWord, newList);
 			}
 		}
+		// construct the result list from the map values
+		List<List<String>> result = new ArrayList<>(indexMap.values());
 		return result;
 	}
 
