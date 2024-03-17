@@ -15,21 +15,40 @@ public class IsomorphicStrings {
 		check("paper", "title", true);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/isomorphic-strings. This
+	 * solution maps each character of string s to the respective character of
+	 * string t and also tracks which characters of string t have already been
+	 * mapped. Time complexity is O(n) where n is the length of string s.
+	 * 
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public static boolean isIsomorphic(String s, String t) {
 		int sLength = s.length();
 		if (sLength != t.length()) {
+			// early exit if the strings have different lengths
 			return false;
 		}
+		// maps characters of string s to characters of string t
 		char[] charMap = new char[128];
+		// keeps track of string t characters which have been mapped
 		boolean[] tCharSet = new boolean[128];
+		// iterate all characters
 		for (int i = 0; i < sLength; i++) {
 			if (charMap[s.charAt(i)] == 0) {
+				// the character has not been mapped yet
 				if (tCharSet[t.charAt(i)]) {
+					// the s character has not been mapped but the t character has been mapped
 					return false;
 				}
+				// map character of string s to string t
 				charMap[s.charAt(i)] = t.charAt(i);
 				tCharSet[t.charAt(i)] = true;
 			} else if (charMap[s.charAt(i)] != t.charAt(i)) {
+				// the character of string s has been mapped to a different character of string
+				// t
 				return false;
 			}
 		}

@@ -8,23 +8,36 @@ public class RansomNote {
 		check("aa", "aab", true);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/ransom-note/description. Time
+	 * complexity is O(n) where n is the length of magazine.
+	 * 
+	 * @param ransomNote
+	 * @param magazine
+	 * @return
+	 */
 	public static boolean canConstruct(String ransomNote, String magazine) {
 		int noteLength = ransomNote.length();
 		int magazineLength = magazine.length();
 		if (magazineLength < noteLength) {
+			// early exit if magazine has less characters than note
 			return false;
 		}
+		// this array keeps the used ransom note chars
 		int[] usedChars = new int[26];
 		for (int i = 0; i < noteLength; i++) {
 			usedChars[ransomNote.charAt(i) - 'a']++;
 		}
 		int count = 0;
 		char next;
+		// iterate all magazine chars and keep count of the characters that appear in
+		// ransom note
 		for (int i = 0; i < magazineLength; i++) {
 			next = magazine.charAt(i);
 			if (usedChars[next - 'a'] > 0) {
 				usedChars[next - 'a']--;
 				if (++count == noteLength) {
+					// return true if all ransom note characters appear in magazine
 					return true;
 				}
 			}

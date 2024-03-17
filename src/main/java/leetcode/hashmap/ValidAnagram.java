@@ -10,17 +10,33 @@ public class ValidAnagram {
 		check("rat", "car", false);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/valid-anagram. This solution
+	 * keeps the count of each character is string s and checks if the count of
+	 * characters in string t is exactly the same. Time complexity is O(n) where n
+	 * is the length of string s.
+	 * 
+	 * @param s
+	 * @param t
+	 * @return
+	 */
 	public static boolean isAnagram(String s, String t) {
 		int sLength = s.length();
 		if (sLength != t.length()) {
+			// early exit if length of string s is different from length of string t
 			return false;
 		}
+		// keeps count of characters
 		int[] charMap = new int[26];
+		// iterate all characters
 		for (int i = 0; i < sLength; i++) {
+			// add to count for characters of string s, subtract for characters of string t
 			charMap[s.charAt(i) - 'a']++;
 			charMap[t.charAt(i) - 'a']--;
 		}
 		for (int i = 0; i < 26; i++) {
+			// check that count is 0 for all characters, which would mean that s has the
+			// same characters as t
 			if (charMap[i] != 0) {
 				return false;
 			}
