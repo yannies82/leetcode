@@ -12,11 +12,23 @@ public class ContainsDuplicate2 {
 		check(new int[] { 1, 2, 3, 1, 2, 3 }, 2, false);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/contains-duplicate-ii. This
+	 * solution stores each number in a map along with its index. If a number is
+	 * encountered again then the new index is compared to the old index to check if
+	 * the difference is greater than or equal to k. Time complexity is O(n) where n
+	 * is the nums array length.
+	 * 
+	 * @param nums
+	 * @param k
+	 * @return
+	 */
 	public static boolean containsNearbyDuplicate(int[] nums, int k) {
 		Map<Integer, Integer> numsMap = new HashMap<>();
 		for (int i = 0; i < nums.length; i++) {
-			Integer prevIndex;
-			if ((prevIndex = numsMap.put(nums[i], i)) != null && i - prevIndex <= k) {
+			Integer prevIndex = numsMap.put(nums[i], i);
+			if (prevIndex != null && i - prevIndex <= k) {
+				// the number has been encountered again after less than k positions
 				return true;
 			}
 		}

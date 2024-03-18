@@ -13,19 +13,37 @@ public class LongestConsecutiveSequence {
 		check(new int[] { 0, 3, 7, 2, 5, 8, 4, 6, 0, 1 }, 9);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/longest-consecutive-sequence.
+	 * This solution traverses all numbers and puts them in a set. It then traverses
+	 * all numbers again and checks for numbers where nums[i] - 1 is not in the set.
+	 * It adds 1 to nums[i] until nums[i] + k is not in the set. Finally it keeps
+	 * the max length of the consecutive numbers. Time complexity is O(n) where n is
+	 * the length of the nums array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static int longestConsecutive(int[] nums) {
 		if (nums.length == 0) {
 			return 0;
 		}
+		// add all numbers to a set
 		Set<Integer> numsSet = new HashSet<>();
 		for (int i = 0; i < nums.length; i++) {
 			numsSet.add(nums[i]);
 		}
 		int maxSize = 1;
+		// iterate all numbers again
 		for (int i = 0; i < nums.length; i++) {
 			if (!numsSet.contains(nums[i] - 1)) {
+				// if the set does not contain nums[i] - 1 check how many
+				// consecutive numbers it contains
 				int j = nums[i];
-				while (numsSet.remove(j++));
+				// remove found numbers for efficiency, they will be searched exactly 1 time
+				while (numsSet.remove(j++))
+					;
+				// update max length if needed
 				if (j - nums[i] - 1 > maxSize) {
 					maxSize = j - nums[i] - 1;
 				}
