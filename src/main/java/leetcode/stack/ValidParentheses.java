@@ -12,6 +12,16 @@ public class ValidParentheses {
 		check("(]", false);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/valid-parentheses. This
+	 * solution pushes opening parentheses into a stack. For every closing
+	 * parenthesis the next value polled from the stack is expected to be the
+	 * respective opening parenthesis. Time complexity is O(n) where n is the length
+	 * of string s.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static boolean isValid(String s) {
 		int length = s.length();
 		Deque<Character> stack = new ArrayDeque<>();
