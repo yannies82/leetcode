@@ -7,6 +7,15 @@ import java.util.List;
 
 public class MinStacks {
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/min-stack. This solution uses
+	 * two linked lists which operate as stacks. The first one keeps all added
+	 * elements and the second one keeps the updated min whenever a new element is
+	 * added. Time complexity for all operations is is O(1).
+	 * 
+	 * @author yanni
+	 *
+	 */
 	public static class MinStack {
 
 		private Element head;
@@ -34,7 +43,7 @@ public class MinStacks {
 			return minHead.value;
 		}
 	}
-	
+
 	public static class MinStack2 {
 
 		private final Deque<Integer> deque = new ArrayDeque<>();
@@ -62,7 +71,7 @@ public class MinStacks {
 			return minList.get(minList.size() - 1);
 		}
 	}
-	
+
 	private static class Element {
 		int value;
 		Element next;

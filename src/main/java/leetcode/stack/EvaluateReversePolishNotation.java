@@ -12,6 +12,17 @@ public class EvaluateReversePolishNotation {
 		check(new String[] { "10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+" }, 22);
 	}
 
+	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/evaluate-reverse-polish-notation. This solution
+	 * uses a stack to keep the encountered number tokens. Whenever an operand token
+	 * is encountered, the last 2 numbers are removed from the stack, the operand is
+	 * applied and the result is stored back to the stack. Time complexity is O(n)
+	 * where n is the length of the tokens array.
+	 * 
+	 * @param tokens
+	 * @return
+	 */
 	public static int evalRPN(String[] tokens) {
 		Element tokensHead = null;
 		for (String token : tokens) {

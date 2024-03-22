@@ -13,34 +13,58 @@ public class BasicCalculator {
 		check(" 2-1 + 2 ", 3);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/basic-calculator. This
+	 * solution uses a linked list as a stack. Time complexity is O(n) where n is
+	 * the length of string s.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static int calculate(String s) {
 		int length = s.length();
+		// this is the head of the stack which keeps nested sums
+		// initialize to sum = 0 and sign = 1
 		Element sumHead = new Element(0, 1, null);
+		// keeps the current number as it is traversed digit by digit
 		int currentNumber = 0;
+		// keeps the sign of the current number
 		int currentSign = 1;
+		// traverse all chars of the string
 		for (int i = 0; i < length; i++) {
-			char ch;
-			switch (ch = s.charAt(i)) {
+			char ch = s.charAt(i);
+			switch (ch) {
 			case '+':
+				// for + operand reset the current number and set the current sign to +1
 				currentNumber = 0;
 				currentSign = 1;
 				break;
 			case '-':
+				// for - operand reset the current number and set the current sign to +1
 				currentNumber = 0;
 				currentSign = -1;
 				break;
 			case '(':
+				// an opening parenthesis denotes a nested sum
+				// add an element to the stack with sum = 0 and sign = 1 for the nested sum
 				sumHead = new Element(0, currentSign, sumHead);
 				currentNumber = 0;
 				currentSign = 1;
 				break;
 			case ')':
+				// a closing parenthesis denotes the end of a nested sum
+				// pop the top stack element after calculating its value and adding it
+				// to the next stack element
 				sumHead.next.sum = sumHead.next.sum + sumHead.sign * sumHead.sum;
 				sumHead = sumHead.next;
 				break;
 			case ' ':
+				// ignore spaces
 				break;
 			default:
+				// a new digit is added to the current number
+				// subtract the current number from the current sum, then multiply it by 10 and
+				// add the new digit before adding it again to the current sum
 				int sum = sumHead.sum - currentSign * currentNumber;
 				currentNumber = currentNumber * 10 + ch - '0';
 				sumHead.sum = sum + currentSign * currentNumber;
@@ -49,6 +73,13 @@ public class BasicCalculator {
 		return sumHead.sign * sumHead.sum;
 	}
 
+	/**
+	 * This is the same solution but it uses an ArrayDeque as a stack instead of a
+	 * linked list.
+	 * 
+	 * @param s
+	 * @return
+	 */
 	public static int calculate2(String s) {
 		int length = s.length();
 		Deque<Sum> sumsStack = new ArrayDeque<>();
@@ -56,8 +87,8 @@ public class BasicCalculator {
 		int currentNumber = 0;
 		int currentSign = 1;
 		for (int i = 0; i < length; i++) {
-			char ch;
-			switch (ch = s.charAt(i)) {
+			char ch = s.charAt(i);
+			switch (ch) {
 			case '+':
 				currentNumber = 0;
 				currentSign = 1;
