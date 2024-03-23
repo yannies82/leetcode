@@ -3,41 +3,46 @@ package leetcode.linkedlists;
 public class MergeTwoSortedLists {
 
 	public static void main(String[] args) {
-		ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(4, null)));
-		ListNode list2 = new ListNode(1, new ListNode(3, new ListNode(4, null)));
-		ListNode expected = new ListNode(1,
-				new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(4, null))))));
+		ListNode list1 = ListNode.createList(1, 2, 4);
+		ListNode list2 = ListNode.createList(1, 3, 4);
+		ListNode expected = ListNode.createList(1, 1, 2, 3, 4, 4);
 		check(list1, list2, expected);
 		check(null, null, null);
-		check(null, new ListNode(0, null), new ListNode(0, null));
+		check(null, new ListNode(0), new ListNode(0));
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/merge-two-sorted-lists. This
+	 * solution has a time complexity of O(n) where n is the length of the smaller
+	 * of the two lists.
+	 * 
+	 * @param list1
+	 * @param list2
+	 * @return
+	 */
 	public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-		ListNode head = null;
-		ListNode current = null;
-		while (list1 != null || list2 != null) {
-			ListNode next;
-			if (list1 == null) {
-				next = list2;
-				list2 = list2.next;
-			} else if (list2 == null) {
-				next = list1;
-				list1 = list1.next;
-			} else if (list1.val <= list2.val) {
-				next = list1;
+		ListNode start = new ListNode(0);
+		ListNode current = start;
+		// while both lists have elements, compare the head elements and append the
+		// smaller one
+		while (list1 != null && list2 != null) {
+			if (list1.val <= list2.val) {
+				current.next = list1;
 				list1 = list1.next;
 			} else {
-				next = list2;
+				current.next = list2;
 				list2 = list2.next;
 			}
-			if (head == null) {
-				head = next;
-			} else {
-				current.next = next;
-			}
-			current = next;
+			current = current.next;
 		}
-		return head;
+		if (list1 != null) {
+			// if the first list still has elements append it to the result
+			current.next = list1;
+		} else if (list2 != null) {
+			// if the second list still has elements append it to the result
+			current.next = list2;
+		}
+		return start.next;
 	}
 
 	private static void check(ListNode list1, ListNode list2, ListNode expected) {
@@ -48,29 +53,4 @@ public class MergeTwoSortedLists {
 		System.out.println("mergeTwoLists is: " + (mergeTwoLists == null ? null : mergeTwoLists.printAll()));
 	}
 
-	private static class ListNode {
-
-		int val;
-		ListNode next;
-
-		ListNode(int val, ListNode next) {
-			super();
-			this.val = val;
-			this.next = next;
-		}
-
-		String printAll() {
-			ListNode current = this;
-			StringBuilder result = new StringBuilder();
-			do {
-				if (!result.isEmpty()) {
-					result.append(",");
-				}
-				result.append(current.val);
-				current = current.next;
-			} while (current != null);
-			return result.toString();
-		}
-
-	}
 }

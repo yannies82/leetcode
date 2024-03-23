@@ -35,9 +35,21 @@ public class CopyListWithRandomPointer {
 		check(node1, node1);
 	}
 
+	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/copy-list-with-random-pointer. This solution
+	 * copies all nodes, mapping old nodes to the respective new nodes and keeping
+	 * the original random references to the initial list. It then iterates the new
+	 * list and uses the map to replace references to original nodes with references
+	 * to new nodes. Time complexity is O(n) where n is the number of nodes in the
+	 * list.
+	 * 
+	 * @param head
+	 * @return
+	 */
 	public static Node copyRandomList(Node head) {
-		Node copyHead = null;
-		Node current = null;
+		Node copyStart = new Node(0);
+		Node current = copyStart;
 		// map source nodes to copied nodes
 		Map<Node, Node> nodeMap = new HashMap<>();
 		// iterate source list, copy all nodes,
@@ -48,22 +60,18 @@ public class CopyListWithRandomPointer {
 			next.random = head.random;
 			nodeMap.put(head, next);
 			head = head.next;
-			if (copyHead == null) {
-				copyHead = next;
-			} else {
-				current.next = next;
-			}
+			current.next = next;
 			current = next;
 		}
 		// iterate the copied list and replace random references of
 		// source list nodes with references of copied nodes,
 		// using the nodesMap
-		current = copyHead;
+		current = copyStart.next;
 		while (current != null) {
 			current.random = nodeMap.get(current.random);
 			current = current.next;
 		}
-		return copyHead;
+		return copyStart.next;
 	}
 
 	private static void check(Node head, Node expected) {

@@ -3,86 +3,151 @@ package leetcode.linkedlists;
 public class ReverseNodesInKGroup {
 
 	public static void main(String[] args) {
-		ListNode list1 = new ListNode(1, new ListNode(2));
-		ListNode expectedReversedList1 = new ListNode(2, new ListNode(1));
+		ListNode list1 = ListNode.createList(1, 2);
+		ListNode expectedReversedList1 = ListNode.createList(2, 1);
 		check(list1, 2, expectedReversedList1);
-		list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-		expectedReversedList1 = new ListNode(2, new ListNode(1, new ListNode(4, new ListNode(3, new ListNode(5)))));
+		list1 = ListNode.createList(1, 2, 3, 4, 5);
+		expectedReversedList1 = ListNode.createList(2, 1, 4, 3, 5);
 		check(list1, 2, expectedReversedList1);
-		list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-		expectedReversedList1 = new ListNode(3, new ListNode(2, new ListNode(1, new ListNode(4, new ListNode(5)))));
+		list1 = ListNode.createList(1, 2, 3, 4, 5);
+		expectedReversedList1 = ListNode.createList(3, 2, 1, 4, 5);
 		check(list1, 3, expectedReversedList1);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/reverse-nodes-in-k-group.
+	 * This solution reverses all sublists of k nodes until the input list is
+	 * exhausted. If the last reversed sublist is less than k nodes long, it is
+	 * restored. Time complexity is O(n) where n is the number of nodes in the list.
+	 * 
+	 * @param head
+	 * @param k
+	 * @return
+	 */
 	public static ListNode reverseKGroup(ListNode head, int k) {
-		ListNode finalHead = null;
-		ListNode current = null;
-		ListNode end = null;
-		ListNode next = head;
-		while (next != null) {
+		// create a dummy node before the list head to assist the reverse operations
+		ListNode prevHead = new ListNode(0, head);
+		ListNode current = prevHead;
+		// reverse sublists starting after the current element
+		// until there is none left
+		while (current.next != null) {
 			int index = 1;
-			// this is the last element of the previous reversed subList
-			ListNode previousEnd = end;
-			// this is the first element of the subList to be reversed
+			// this is the element at index left-1, before the subList that will be reversed
+			ListNode start = current;
+			// this is the element at index left, the first element of the subList to be
+			// reversed
 			// it will be the last element of the reversed subList
-			end = next;
-			// iterate until we reach the element at the right index
-			while (next != null && index <= k) {
-				ListNode previous = current;
-				current = next;
-				next = next.next;
-				// construct the subList beginning from the tail element at index left
-				// and ending at the head element at index right, resulting in the reversed
-				// subList
-				// after the iteration the subCurrent element will be the head of the reversed
-				// subList
-				current.next = previous;
+			current = start.next;
+			ListNode reverseEnd = current;
+			ListNode prev = null;
+			// iterate and reverse nodes until we reach the element at the right index
+			while (current != null && index <= k) {
+				ListNode temp = current;
+				current = current.next;
+				temp.next = prev;
+				prev = temp;
 				index++;
 			}
+			// append the head of the reversed sublist to the element before left index
+			start.next = prev;
+			// append the element after right index to the tail of the reversed sublist
+			reverseEnd.next = current;
 			if (index <= k) {
 				// the last subList length was less than k
 				// restore it by re-reversing it
-				// reset index
-				index = 1;
-				// set last element next to null
-				end.next = null;
-				// reset next
-				next = current;
-				// this is the first element of the subList to be reversed
-				// it will be the last element of the reversed subList
-				end = next;
-				// iterate until we reach the element at the right index
-				while (next != null) {
-					ListNode previous = current;
-					current = next;
-					next = next.next;
-					// construct the subList beginning from the tail element at index left
-					// and ending at the head element at index right, resulting in the reversed
-					// subList
-					// after the iteration the subCurrent element will be the head of the reversed
-					// subList
-					current.next = previous;
-					index++;
+				current = start.next;
+				reverseEnd = current;
+				prev = null;
+				// iterate and reverse nodes until we reach the element at the right index
+				while (current != null) {
+					ListNode temp = current;
+					current = current.next;
+					temp.next = prev;
+					prev = temp;
 				}
+				// append the head of the reversed sublist to the element before left index
+				start.next = prev;
+				// append the element after right index to the tail of the reversed sublist
+				reverseEnd.next = current;
 			}
-			if (finalHead == null) {
-				// this is the first subList that was reversed
-				// the head of the final list will be the end of the first reversed subList
-				finalHead = current;
-			} else {
-				// every subsequent reversed subList should be concatenated to the end of the
-				// previous
-				// reversed subList
-				previousEnd.next = current;
-			}
-			// the last element of the reversed subList should be concatenated to the next
-			// element
-			end.next = next;
+			// set the last element of the reversed list as the current element
+			current = reverseEnd;
 		}
-		return finalHead;
+		return prevHead.next;
 	}
 
+	/**
+	 * Alternate solution which extracts the reverse sublist functionality into a
+	 * separate method. Slower but more readable. Time complexity is O(n) where n is
+	 * the number of nodes in the list.
+	 * 
+	 * @param head
+	 * @param k
+	 * @return
+	 */
 	public static ListNode reverseKGroup2(ListNode head, int k) {
+		// create a dummy node before the list head to assist the reverse operations
+		ListNode prevHead = new ListNode(0, head);
+		ListNode current = prevHead;
+		// reverse sublists starting after the current element
+		// until there is none left
+		while (current.next != null) {
+			// this is the element at index left-1, before the subList that will be reversed
+			ListNode start = current;
+			// this is the element at index left, the first element of the subList to be
+			// reversed
+			// it will be the last element of the reversed subList
+			ListNode reverseEnd = start.next;
+			if (!reverseSublist(start, k)) {
+				// the last subList length was less than k
+				// restore it by re-reversing it
+				// reset index
+				reverseSublist(start, k);
+			}
+			// set the last element of the reversed list as the current element
+			current = reverseEnd;
+		}
+		return prevHead.next;
+	}
+
+	/**
+	 * This method reverses the subList starting after the start node for k nodes
+	 * and returns true if the length of the reversed sublist was k.
+	 * 
+	 * @param start
+	 * @param k
+	 * @return
+	 */
+	private static boolean reverseSublist(ListNode start, int k) {
+		int index = 1;
+		ListNode current = start.next;
+		ListNode reverseEnd = current;
+		ListNode prev = null;
+		// iterate and reverse nodes until we reach the element at the right index
+		while (current != null && index <= k) {
+			ListNode temp = current;
+			current = current.next;
+			temp.next = prev;
+			prev = temp;
+			index++;
+		}
+		// append the head of the reversed sublist to the element before left index
+		start.next = prev;
+		// append the element after right index to the tail of the reversed sublist
+		reverseEnd.next = current;
+		return index > k;
+	}
+
+	/**
+	 * Alternate solution which checks if the sublist has at least k nodes before
+	 * reversing. Time complexity is O(n) where n is the number of nodes in the
+	 * list.
+	 * 
+	 * @param head
+	 * @param k
+	 * @return
+	 */
+	public static ListNode reverseKGroup3(ListNode head, int k) {
 		ListNode finalHead = null;
 		ListNode current = null;
 		ListNode end = null;
@@ -143,33 +208,6 @@ public class ReverseNodesInKGroup {
 		System.out.println("expected is: " + (expected == null ? null : expected.printAll()));
 		ListNode reverseKGroup = reverseKGroup(head, k);
 		System.out.println("reverseKGroup is: " + (reverseKGroup == null ? null : reverseKGroup.printAll()));
-	}
-
-	private static class ListNode {
-		int val;
-		ListNode next;
-
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-
-		String printAll() {
-			ListNode current = this;
-			StringBuilder result = new StringBuilder();
-			do {
-				if (!result.isEmpty()) {
-					result.append(",");
-				}
-				result.append(current.val);
-				current = current.next;
-			} while (current != null);
-			return result.toString();
-		}
 	}
 
 }

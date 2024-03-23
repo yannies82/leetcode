@@ -20,7 +20,7 @@ public class PalindromeLinkedList {
 	 * @param head
 	 * @return
 	 */
-	public static boolean isPalindrome2(ListNode head) {
+	public static boolean isPalindrome(ListNode head) {
 		if (head == null || head.next == null) {
 			// early exit in case of empty list or single node
 			return true;
@@ -67,7 +67,7 @@ public class PalindromeLinkedList {
 	 * @param head
 	 * @return
 	 */
-	public static boolean isPalindrome(ListNode head) {
+	public static boolean isPalindrome2(ListNode head) {
 		if (head == null || head.next == null) {
 			// early exit in case of empty list or single node
 			return true;
