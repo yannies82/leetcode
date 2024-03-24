@@ -3,10 +3,9 @@ package leetcode.linkedlists;
 public class MiddleOfTheLinkedList {
 
 	public static void main(String[] args) {
-		ListNode l1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, null)))));
-		ListNode l2 = new ListNode(1,
-				new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, null))))));
+		ListNode l1 = ListNode.createList(1, 2, 3, 4, 5);
 		check(l1, 3);
+		ListNode l2 = ListNode.createList(1, 2, 3, 4, 5, 6);
 		check(l2, 4);
 	}
 
@@ -39,29 +38,4 @@ public class MiddleOfTheLinkedList {
 		System.out.println("middleNode is: " + middleNode.val);
 	}
 
-	private static class ListNode {
-
-		int val;
-		ListNode next;
-
-		ListNode(int val, ListNode next) {
-			super();
-			this.val = val;
-			this.next = next;
-		}
-
-		String printAll() {
-			ListNode current = this;
-			StringBuilder result = new StringBuilder();
-			do {
-				if (!result.isEmpty()) {
-					result.append(",");
-				}
-				result.append(current.val);
-				current = current.next;
-			} while (current != null);
-			return result.toString();
-		}
-
-	}
 }

@@ -6,20 +6,19 @@ import java.util.Map;
 public class RemoveZeroSumConsecutiveNodes {
 
 	public static void main(String[] args) {
-		ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(-3, new ListNode(3, new ListNode(1)))));
-		ListNode expectedList1 = new ListNode(3, new ListNode(1));
+		ListNode list1 = ListNode.createList(1, 2, -3, 3, 1);
+		ListNode expectedList1 = ListNode.createList(3, 1);
 		check(list1, expectedList1);
 		list1 = new ListNode(1);
 		expectedList1 = null;
-		list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(-3, new ListNode(4)))));
-		expectedList1 = new ListNode(1, new ListNode(2, new ListNode(4)));
+		list1 = ListNode.createList(1, 2, -3, 3, 4);
+		expectedList1 = ListNode.createList(3, 4);
 		check(list1, expectedList1);
-		list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(-3, new ListNode(-2)))));
+		list1 = ListNode.createList(1, 2, 3, -3, -2);
 		expectedList1 = new ListNode(1);
 		check(list1, expectedList1);
-		list1 = new ListNode(1, new ListNode(3, new ListNode(2, new ListNode(-3,
-				new ListNode(-2, new ListNode(5, new ListNode(5, new ListNode(-5, new ListNode(1)))))))));
-		expectedList1 = new ListNode(1, new ListNode(5, new ListNode(1)));
+		list1 = ListNode.createList(1, 3, 2, -3, -2, 5, 5, -5, 1);
+		expectedList1 = ListNode.createList(1, 5, 1);
 		check(list1, expectedList1);
 	}
 
@@ -114,33 +113,6 @@ public class RemoveZeroSumConsecutiveNodes {
 		ListNode removeZeroSumSublists = removeZeroSumSublists(head);
 		System.out.println("removeZeroSumSublists is: "
 				+ (removeZeroSumSublists == null ? null : removeZeroSumSublists.printAll()));
-	}
-
-	private static class ListNode {
-		int val;
-		ListNode next;
-
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-
-		String printAll() {
-			ListNode current = this;
-			StringBuilder result = new StringBuilder();
-			do {
-				if (!result.isEmpty()) {
-					result.append(",");
-				}
-				result.append(current.val);
-				current = current.next;
-			} while (current != null);
-			return result.toString();
-		}
 	}
 
 }

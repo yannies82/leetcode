@@ -16,7 +16,8 @@ public class LRUCaches {
 	}
 
 	/**
-	 * Implementation with doubly linked list and map.
+	 * Leetcode problem: https://leetcode.com/problems/lru-cache. Implementation
+	 * with doubly linked list and map.
 	 * 
 	 * @author yanni
 	 *

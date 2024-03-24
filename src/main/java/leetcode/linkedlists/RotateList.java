@@ -3,14 +3,26 @@ package leetcode.linkedlists;
 public class RotateList {
 
 	public static void main(String[] args) {
-		ListNode list1 = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-		ListNode expectedList1 = new ListNode(4, new ListNode(5, new ListNode(1, new ListNode(2, new ListNode(3)))));
+		ListNode list1 = ListNode.createList(1, 2, 3, 4, 5);
+		ListNode expectedList1 = ListNode.createList(4, 5, 1, 2, 3);
 		check(list1, 2, expectedList1);
-		list1 = new ListNode(0, new ListNode(1, new ListNode(2)));
-		expectedList1 = new ListNode(2, new ListNode(0, new ListNode(1)));
+		list1 = ListNode.createList(0, 1, 2);
+		expectedList1 = ListNode.createList(2, 0, 1);
 		check(list1, 4, expectedList1);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/rotate-list. This solution
+	 * iterates the list to find its length then finds the actual number of
+	 * rotations that should be performed. Finally it iterates the list again to
+	 * find the node which will be the new tail and performs the rotation by
+	 * adjusting the next pointers of the head, tail and the new tail. Time
+	 * complexity is O(n) where n is the number of nodes in the list.
+	 * 
+	 * @param head
+	 * @param k
+	 * @return
+	 */
 	public static ListNode rotateRight(ListNode head, int k) {
 		// early exit if list is empty
 		if (head == null) {
@@ -20,17 +32,15 @@ public class RotateList {
 		if (k == 0) {
 			return head;
 		}
-		ListNode prev = null;
 		ListNode next = head;
-		int count = 0;
+		int count = 1;
 		// iterate the list in order to find its length and tail element
-		while (next != null) {
-			prev = next;
+		while (next.next != null) {
 			next = next.next;
 			count++;
 		}
 		int length = count;
-		ListNode tail = prev;
+		ListNode tail = next;
 		// calculate the actual number of rotations in case that k > count
 		int realK = k % length;
 		// early exit if k == 0 and return the list as is
@@ -39,7 +49,6 @@ public class RotateList {
 		}
 		// iterate the list in order to find the element at the point of rotation
 		int targetIndex = length - realK;
-		prev = null;
 		next = head;
 		count = 1;
 		while (next != null) {
@@ -52,13 +61,21 @@ public class RotateList {
 				next.next = null;
 				return head;
 			}
-			prev = next;
 			next = next.next;
 			count++;
 		}
 		return head;
 	}
 
+	/**
+	 * Alternate solution which keeps the index of each node in an array in order to
+	 * avoid the second traversal. Time complexity is O(n) where n is the number of
+	 * nodes in the list.
+	 * 
+	 * @param head
+	 * @param k
+	 * @return
+	 */
 	public static ListNode rotateRight2(ListNode head, int k) {
 		// early exit if list is empty
 		if (head == null) {
@@ -105,33 +122,6 @@ public class RotateList {
 		System.out.println("expected is: " + (expected == null ? null : expected.printAll()));
 		ListNode rotateRight = rotateRight(head, k);
 		System.out.println("removeNthFromEnd is: " + (rotateRight == null ? null : rotateRight.printAll()));
-	}
-
-	private static class ListNode {
-		int val;
-		ListNode next;
-
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		ListNode(int val, ListNode next) {
-			this.val = val;
-			this.next = next;
-		}
-
-		String printAll() {
-			ListNode current = this;
-			StringBuilder result = new StringBuilder();
-			do {
-				if (!result.isEmpty()) {
-					result.append(",");
-				}
-				result.append(current.val);
-				current = current.next;
-			} while (current != null);
-			return result.toString();
-		}
 	}
 
 }

@@ -62,36 +62,4 @@ public class ReorderList {
 		System.out.println("reorderList is: " + head.printAll());
 	}
 
-	private static class ListNode {
-		int val;
-		ListNode next;
-
-		ListNode(int val) {
-			this.val = val;
-		}
-
-		String printAll() {
-			ListNode current = this;
-			StringBuilder result = new StringBuilder();
-			do {
-				if (!result.isEmpty()) {
-					result.append(",");
-				}
-				result.append(current.val);
-				current = current.next;
-			} while (current != null);
-			return result.toString();
-		}
-
-		private static ListNode createList(int... values) {
-			ListNode start = new ListNode(0);
-			ListNode current = start;
-			for (int val : values) {
-				current.next = new ListNode(val);
-				current = current.next;
-			}
-			return start.next;
-		}
-	}
-
 }

@@ -3,18 +3,13 @@ package leetcode.linkedlists;
 public class MergeInBetweenLinkedLists {
 
 	public static void main(String[] args) {
-		ListNode list1 = new ListNode(10,
-				new ListNode(1, new ListNode(13, new ListNode(6, new ListNode(9, new ListNode(5, null))))));
-		ListNode list2 = new ListNode(1000000, new ListNode(1000001, new ListNode(1000002, null)));
-		ListNode expected = new ListNode(10, new ListNode(1, new ListNode(13,
-				new ListNode(1000000, new ListNode(1000001, new ListNode(1000002, new ListNode(5, null)))))));
+		ListNode list1 = ListNode.createList(10, 1, 13, 6, 9, 5);
+		ListNode list2 = ListNode.createList(1000000, 1000001, 1000002);
+		ListNode expected = ListNode.createList(10, 1, 13, 1000000, 1000001, 1000002, 5);
 		check(list1, 3, 4, list2, expected);
-		list1 = new ListNode(0, new ListNode(1,
-				new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, new ListNode(6, null)))))));
-		list2 = new ListNode(1000000,
-				new ListNode(1000001, new ListNode(1000002, new ListNode(1000003, new ListNode(1000004, null)))));
-		expected = new ListNode(0, new ListNode(1, new ListNode(1000000, new ListNode(1000001,
-				new ListNode(1000002, new ListNode(1000003, new ListNode(1000004, new ListNode(6, null))))))));
+		list1 = ListNode.createList(0, 1, 2, 3, 4, 5, 6);
+		list2 = ListNode.createList(1000000, 1000001, 1000002, 1000003, 1000004);
+		expected = ListNode.createList(0, 1, 1000000, 1000001, 1000002, 1000003, 1000004, 6);
 		check(list1, 2, 5, list2, expected);
 	}
 
@@ -68,29 +63,4 @@ public class MergeInBetweenLinkedLists {
 		System.out.println("mergeTwoLists is: " + (mergeInBetween == null ? null : mergeInBetween.printAll()));
 	}
 
-	private static class ListNode {
-
-		int val;
-		ListNode next;
-
-		ListNode(int val, ListNode next) {
-			super();
-			this.val = val;
-			this.next = next;
-		}
-
-		String printAll() {
-			ListNode current = this;
-			StringBuilder result = new StringBuilder();
-			do {
-				if (!result.isEmpty()) {
-					result.append(",");
-				}
-				result.append(current.val);
-				current = current.next;
-			} while (current != null);
-			return result.toString();
-		}
-
-	}
 }
