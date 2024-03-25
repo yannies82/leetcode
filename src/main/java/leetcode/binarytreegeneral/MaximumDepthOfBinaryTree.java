@@ -10,7 +10,10 @@ public class MaximumDepthOfBinaryTree {
 	}
 
 	/**
-	 * Recursive implementation.
+	 * Leetcode problem: https://leetcode.com/problems/maximum-depth-of-binary-tree.
+	 * This solution traverses the tree, increasing the depth for each level and
+	 * keeps track of the maximum depth. Time complexity is O(n) where n is the
+	 * number of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return
@@ -20,31 +23,26 @@ public class MaximumDepthOfBinaryTree {
 		if (root == null) {
 			return 0;
 		}
-		// first element of the array keeps the current depth
-		// second element keeps the maximum depth
-		int[] count = { 0, 0 };
+		// keeps the maximum depth
+		int[] count = { 0 };
 		// traverse the tree recursively
-		traverse(root, count);
-		return count[1];
+		traverse(root, 1, count);
+		return count[0];
 	}
 
-	private static void traverse(TreeNode node, int[] count) {
-		// increase the depth counter
-		count[0]++;
-		if (count[1] < count[0]) {
+	private static void traverse(TreeNode node, int depth, int[] count) {
+		if (count[0] < depth) {
 			// increase the max depth counter if applicable
-			count[1] = count[0];
+			count[0] = depth;
 		}
 		if (node.left != null) {
 			// traverse left node recursively
-			traverse(node.left, count);
+			traverse(node.left, depth + 1, count);
 		}
 		if (node.right != null) {
 			// traverse right node recursively
-			traverse(node.right, count);
+			traverse(node.right, depth + 1, count);
 		}
-		// decrease the depth counter
-		count[0]--;
 	}
 
 	private static void check(TreeNode root, int expected) {
@@ -52,43 +50,6 @@ public class MaximumDepthOfBinaryTree {
 		System.out.println("expected is: " + expected);
 		int maxDepth = maxDepth(root);
 		System.out.println("maxDepth is: " + maxDepth);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left != null) {
-				print(node.left, builder);
-			}
-			if (node.right != null) {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

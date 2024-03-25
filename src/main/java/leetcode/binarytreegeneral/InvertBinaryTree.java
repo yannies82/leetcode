@@ -19,7 +19,35 @@ public class InvertBinaryTree {
 		check(tree1, tree2);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/invert-binary-tree. This
+	 * solution traverses the tree using recursive DFS and exchanges the left and
+	 * right nodes. Time complexity is O(n) where n is the number of nodes in the
+	 * tree.
+	 * 
+	 * @param root
+	 * @return
+	 */
 	public static TreeNode invertTree(TreeNode root) {
+		// early exit for empty tree
+		if (root == null) {
+			return null;
+		}
+		// apply recursively to left and right nodes
+		// exchange left and right nodes
+		TreeNode temp = invertTree(root.left);
+		root.left = invertTree(root.right);
+		root.right = temp;
+		return root;
+	}
+
+	/**
+	 * Alternate solution using iterative DFS.
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public static TreeNode invertTree2(TreeNode root) {
 		// early exit if root is null
 		if (root == null) {
 			return null;
@@ -50,47 +78,6 @@ public class InvertBinaryTree {
 		System.out.println("expected is: " + (expected == null ? null : expected.printAll()));
 		TreeNode invertTree = invertTree(root);
 		System.out.println("invertTree is: " + (invertTree == null ? null : invertTree.printAll()));
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

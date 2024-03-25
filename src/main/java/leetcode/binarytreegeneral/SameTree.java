@@ -17,6 +17,15 @@ public class SameTree {
 		check(tree1, tree2, false);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/same-tree. This solution uses
+	 * iterative DFS traversal on both trees and compares the value of each node.
+	 * Time complexity is O(n) where n is the number of nodes in each tree.
+	 * 
+	 * @param p
+	 * @param q
+	 * @return
+	 */
 	public static boolean isSameTree(TreeNode p, TreeNode q) {
 		// early exit if both trees are null
 		if (p == null && q == null) {
@@ -60,47 +69,6 @@ public class SameTree {
 		System.out.println("expected is: " + expected);
 		boolean isSameTree = isSameTree(p, q);
 		System.out.println("isSameTree is: " + isSameTree);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

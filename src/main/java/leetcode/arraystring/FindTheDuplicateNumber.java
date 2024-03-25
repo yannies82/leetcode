@@ -1,6 +1,8 @@
 package leetcode.arraystring;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FindTheDuplicateNumber {
 
@@ -14,7 +16,7 @@ public class FindTheDuplicateNumber {
 	 * Leetcode problem: https://leetcode.com/problems/find-the-duplicate-number.
 	 * This solution treats the array values as indexes and the array as a linked
 	 * list and tries to detect the cycle. Time complexity is O(n) where n is the
-	 * length of the nums array.
+	 * length of the nums array and space complexity is O(1).
 	 * 
 	 * @param nums
 	 * @return
@@ -40,6 +42,24 @@ public class FindTheDuplicateNumber {
 			fast = nums[fast];
 		}
 		return slow;
+	}
+
+	/**
+	 * Simple approach using hashset. Time complexity is O(n) where n is the length
+	 * of the array and space complexity is O(n).
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public static int findDuplicate2(int[] nums) {
+		int n = nums.length;
+		Set<Integer> numSet = new HashSet<>();
+		for (int i = 0; i < n; i++) {
+			if (!numSet.add(nums[i])) {
+				return nums[i];
+			}
+		}
+		return -1;
 	}
 
 	private static void check(int[] nums, int expected) {

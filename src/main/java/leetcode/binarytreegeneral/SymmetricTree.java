@@ -14,7 +14,11 @@ public class SymmetricTree {
 	}
 
 	/**
-	 * Recursive solution.
+	 * Leetcode problem: https://leetcode.com/problems/symmetric-tree. This solution
+	 * traverses both trees using recursive DFS. The first tree is traversed
+	 * preorder and the second tree is traversed postorder and the symmetric nodes
+	 * are compared. Time complexity is O(n) where n is the number of nodes in the
+	 * tree.
 	 * 
 	 * @param root
 	 * @return
@@ -57,7 +61,7 @@ public class SymmetricTree {
 	}
 
 	/**
-	 * Iterative solution.
+	 * Alternate solution using iterative DFS.
 	 * 
 	 * @param root
 	 * @return
@@ -108,47 +112,6 @@ public class SymmetricTree {
 		System.out.println("expected is: " + expected);
 		boolean isSymmetric = isSymmetric(root);
 		System.out.println("isSymmetric is: " + isSymmetric);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }
