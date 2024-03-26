@@ -18,7 +18,16 @@ public class ConstructFromInorderPostorder {
 	}
 
 	/**
-	 * Recursive solution with cache.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal.
+	 * This solution splits the problem into smaller subproblems and solves them
+	 * recursively.For every subproblem a range in the postorder and the inorder
+	 * array is provided. The last element of the postorder array is the root
+	 * element of the subtree. The elements in the inorder array which are before
+	 * the root element belong to the left subtree of the root element and the
+	 * elements after the root element belong to the right subtree. The left and
+	 * right tree are solved recursively. Time complexity is O(n) where n is the
+	 * number of nodes in the tree.
 	 * 
 	 * @param inorder
 	 * @param postorder
@@ -118,47 +127,6 @@ public class ConstructFromInorderPostorder {
 		System.out.println("expected is: " + (expected == null ? null : expected.printAll()));
 		TreeNode buildTree = buildTree(inorder, postorder);
 		System.out.println("buildTree is: " + (buildTree == null ? null : buildTree.printAll()));
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

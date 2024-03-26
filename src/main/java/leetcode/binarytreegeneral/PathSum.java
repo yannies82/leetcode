@@ -14,7 +14,10 @@ public class PathSum {
 	}
 
 	/**
-	 * Recursive implementation.
+	 * Leetcode problem: https://leetcode.com/problems/path-sum. This solution
+	 * traverses the tree preorder, increasing the sum at each level by the current
+	 * node's val. For leaf nodes it checks if the sum equals the target sum. Time
+	 * complexity is O(n) where n is the number of nodes int he tree.
 	 * 
 	 * @param root
 	 * @return
@@ -24,7 +27,6 @@ public class PathSum {
 		if (root == null) {
 			return false;
 		}
-		// first element of the array keeps the current sum
 		int sum = 0;
 		// traverse the tree recursively
 		return traverse(root, sum, targetSum);
@@ -59,43 +61,6 @@ public class PathSum {
 		System.out.println("expected is: " + expected);
 		boolean hasPathSum = hasPathSum(root, targetSum);
 		System.out.println("hasPathSum is: " + hasPathSum);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left != null) {
-				print(node.left, builder);
-			}
-			if (node.right != null) {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

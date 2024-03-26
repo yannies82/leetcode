@@ -16,6 +16,16 @@ public class PopulatingNextRightPointersInEachNode2 {
 		check(tree1, expected);
 	}
 
+	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii.
+	 * This solution recursively calculates the next element for the children of
+	 * each node, starting with the rightmost nodes of each level. Time complexity
+	 * is O(n) where n is the number of nodes in the tree.
+	 * 
+	 * @param root
+	 * @return
+	 */
 	public static Node connect(Node root) {
 		connectR(root);
 		return root;
@@ -26,58 +36,60 @@ public class PopulatingNextRightPointersInEachNode2 {
 		if (node == null)
 			return;
 
-		/*
-		 * Before setting next of left and right children, set next of children of other
-		 * nodes at same level (because we can access children of other nodes using p's
-		 * next only)
-		 */
+		// if this node has a next element calculate the next pointers of this next
+		// element's children first, they are required for the calculation
+		// of the next pointers of this element's children
 		if (node.next != null) {
 			connectR(node.next);
 		}
 
-		/* Set the next pointer for p's left child */
 		if (node.left != null) {
+			// calculate the next pointer for the left child
 			if (node.right != null) {
+				// if the element also has a right child then it is the next element of the left
+				// child
 				node.left.next = node.right;
+				// calculate the next element of the right child
 				node.right.next = getNext(node);
 			} else {
+				// the element does not have a right child calculate the next element of the
+				// left child
 				node.left.next = getNext(node);
 			}
 
-			/*
-			 * Recursively call for next level nodes. Note that we call only for left child.
-			 * The call for left child will call for right child
-			 */
+			// calculate recursively for the next level, we only need to invoke the call for
+			// the left child
+			// it will also invoke the call for the right child through its next pointer
 			connectR(node.left);
-		}
-
-		/*
-		 * If left child is NULL then first node of next level will either be p->right
-		 * or getNextRight(p)
-		 */
-		else if (node.right != null) {
+		} else if (node.right != null) {
+			// the left child is null and the right is not, calculate the next element of
+			// the right child
 			node.right.next = getNext(node);
+			// calculate recursively for the next level
 			connectR(node.right);
 		} else {
+			// find the leftmost child of nodes at the same level and calculate recursively
+			// for the next level
 			connectR(getNext(node));
 		}
 	}
 
-	/*
-	 * This function returns the leftmost child of nodes at the same level as p.
-	 * This function is used to getNExt right of p's right child If right child of p
-	 * is NULL then this can also be used for the left child
+	/**
+	 * This function returns the leftmost child of nodes at the same level as p. It
+	 * assumes that all next pointers of elements on the right have been calculated.
+	 * 
+	 * @param p
+	 * @return
 	 */
 	private static Node getNext(Node p) {
-		/*
-		 * Traverse nodes at p's level and find and return the first node's first child
-		 */
 		Node temp = p;
 		while ((temp = temp.next) != null) {
-			if (temp.left != null)
+			if (temp.left != null) {
 				return temp.left;
-			if (temp.right != null)
+			}
+			if (temp.right != null) {
 				return temp.right;
+			}
 		}
 
 		// If all the nodes at p's level are leaf nodes then return NULL
