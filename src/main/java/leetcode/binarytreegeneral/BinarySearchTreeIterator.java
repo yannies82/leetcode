@@ -7,6 +7,7 @@ import java.util.Queue;
 public class BinarySearchTreeIterator {
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/binary-search-tree-iterator.
 	 * This solution performs iterative inorder traversal. Every time next is
 	 * invoked, an iteration of the traversal is performed until the leftmost
 	 * element is reached. Then the last element is polled from the stack and

@@ -18,7 +18,11 @@ public class MaximumPathSum {
 	}
 
 	/**
-	 * Recursive implementation.
+	 * Leetcode problem: https://leetcode.com/problems/binary-tree-maximum-path-sum.
+	 * This solution traverses the tree preorder and for each node calculates the
+	 * maximum path sum and returns the expandable max path sum i.e. the max path
+	 * sum which can be expanded by the parent nodes. Time complexity is O(n) where
+	 * n is the number of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return
@@ -109,43 +113,6 @@ public class MaximumPathSum {
 		System.out.println("expected is: " + expected);
 		int maxPathSum = maxPathSum(root);
 		System.out.println("maxPathSum is: " + maxPathSum);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left != null) {
-				print(node.left, builder);
-			}
-			if (node.right != null) {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

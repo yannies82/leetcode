@@ -10,7 +10,10 @@ public class SumRootToLeafNumbers {
 	}
 
 	/**
-	 * Recursive implementation.
+	 * Leetcode problem: https://leetcode.com/problems/sum-root-to-leaf-numbers.
+	 * This solution traverses the tree preorder and adds to the sum every time a
+	 * leaf node is reached. Time complexity is O(n) where n is the number of nodes
+	 * in the tree.
 	 * 
 	 * @param root
 	 * @return
@@ -50,43 +53,6 @@ public class SumRootToLeafNumbers {
 		System.out.println("expected is: " + expected);
 		int sumNumbers = sumNumbers(root);
 		System.out.println("sumNumbers is: " + sumNumbers);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left != null) {
-				print(node.left, builder);
-			}
-			if (node.right != null) {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

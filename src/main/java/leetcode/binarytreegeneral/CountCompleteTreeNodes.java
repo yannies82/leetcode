@@ -16,6 +16,7 @@ public class CountCompleteTreeNodes {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/count-complete-tree-nodes.
 	 * This solution counts the tree height by finding the leftmost node, then
 	 * performs a binary search for the index of the last element in the last line.
 	 * It probes the possible paths according to the search index. In this way we
@@ -89,52 +90,24 @@ public class CountCompleteTreeNodes {
 		return count;
 	}
 
+	/**
+	 * Simple recursive solution with O(n) time complexity.
+	 * 
+	 * @param root
+	 * @return
+	 */
+	public static int countNodes2(TreeNode root) {
+		if (root == null) {
+			return 0;
+		}
+		return countNodes(root.left) + countNodes(root.right) + 1;
+	}
+
 	private static void check(TreeNode root, int expected) {
 		System.out.println("root is: " + (root == null ? null : root.printAll()));
 		System.out.println("expected is: " + expected);
 		int countNodes = countNodes(root);
 		System.out.println("countNodes is: " + countNodes);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

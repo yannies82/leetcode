@@ -17,7 +17,10 @@ public class LowestCommonAncestor {
 	}
 
 	/**
-	 * Recursive implementation with single traversal.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree.
+	 * Recursive implementation with single traversal. Time complexity is O(n) where
+	 * n is the number of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return
@@ -138,43 +141,6 @@ public class LowestCommonAncestor {
 		System.out.println("expected is: " + expected.val);
 		TreeNode lowestCommonAncestor = lowestCommonAncestor(root, p, q);
 		System.out.println("lowestCommonAncestor is: " + lowestCommonAncestor.val);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left != null) {
-				print(node.left, builder);
-			}
-			if (node.right != null) {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }
