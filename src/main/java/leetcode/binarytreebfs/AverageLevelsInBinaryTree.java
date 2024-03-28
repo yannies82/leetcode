@@ -18,7 +18,10 @@ public class AverageLevelsInBinaryTree {
 	}
 
 	/**
-	 * Iterative solution using BFS traversal.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/average-of-levels-in-binary-tree. Iterative
+	 * solution using BFS traversal. Time complexity is O(n) where n is the number
+	 * of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return
@@ -57,47 +60,6 @@ public class AverageLevelsInBinaryTree {
 		System.out.println("expected is: " + expected);
 		List<Double> averageOfLevels = averageOfLevels(root);
 		System.out.println("averageOfLevels is: " + averageOfLevels);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

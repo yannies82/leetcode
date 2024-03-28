@@ -22,8 +22,10 @@ public class BinaryTreeRightSideView {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/binary-tree-right-side-view.
 	 * Recursive solution using postorder traversal and putting in the result list
-	 * the first node for each new level.
+	 * the first node for each new level. Time complexity is O(n) where n is the
+	 * number of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return
@@ -100,47 +102,6 @@ public class BinaryTreeRightSideView {
 		System.out.println("expected is: " + expected);
 		List<Integer> rightSideView = rightSideView(root);
 		System.out.println("rightSideView is: " + rightSideView);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }

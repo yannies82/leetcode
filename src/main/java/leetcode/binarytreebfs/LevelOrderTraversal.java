@@ -21,7 +21,10 @@ public class LevelOrderTraversal {
 	}
 
 	/**
-	 * Iterative solution using BFS traversal.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/binary-tree-level-order-traversal. Iterative
+	 * solution using BFS traversal. Time complexity is O(n) where n is the number
+	 * of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return
@@ -61,47 +64,6 @@ public class LevelOrderTraversal {
 		System.out.println("expected is: " + expected);
 		List<List<Integer>> levelOrder = levelOrder(root);
 		System.out.println("levelOrder is: " + levelOrder);
-	}
-
-	private static class TreeNode {
-		int val;
-		TreeNode left;
-		TreeNode right;
-
-		TreeNode(int val) {
-			this.val = val;
-		}
-
-		TreeNode(int val, TreeNode left, TreeNode right) {
-			this.val = val;
-			this.left = left;
-			this.right = right;
-		}
-
-		String printAll() {
-			TreeNode current = this;
-			StringBuilder result = new StringBuilder();
-			print(current, result);
-			return result.toString();
-		}
-
-		void print(TreeNode node, StringBuilder builder) {
-			if (!builder.isEmpty()) {
-				builder.append(",");
-			}
-			builder.append(node.val);
-			if (node.left == null) {
-				builder.append(", null");
-			} else {
-				print(node.left, builder);
-			}
-			if (node.right == null) {
-				builder.append(", null");
-			} else {
-				print(node.right, builder);
-			}
-		}
-
 	}
 
 }
