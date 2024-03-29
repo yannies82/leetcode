@@ -25,9 +25,12 @@ public class EvaluateDivision {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/evaluate-division.
 	 * This solution uses a map of maps to store the given equation results. For
 	 * each given query we recursively calculate the divisions until the equations
-	 * map contains an entry for both the dividee and the divisor.
+	 * map contains an entry for both the dividee and the divisor. Time complexity
+	 * is O(m + n) where m is the number of equations and n is the number of
+	 * queries.
 	 * 
 	 * @param equations
 	 * @param values

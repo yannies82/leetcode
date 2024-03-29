@@ -17,7 +17,9 @@ public class SurroundedRegions {
 	}
 
 	/**
-	 * Flood fill and DFS solution.
+	 * Leetcode problem: https://leetcode.com/problems/surrounded-regions. This
+	 * solution performs flood fill and DFS. Time complexity is O(m * n) where m is
+	 * the number of rows and n is the number of columns in the grid.
 	 * 
 	 * @param board
 	 */

@@ -22,7 +22,10 @@ public class CloneGraph {
 	}
 
 	/**
-	 * Solution using a map and recursive DFS traversal of the graph.
+	 * Leetcode problem: https://leetcode.com/problems/clone-graph. This solution
+	 * uses a map and recursive DFS traversal of the graph. It traverses the graph
+	 * and keeps track of already copied nodes to avoid creating them again. Time
+	 * complexity is O(n) where n is the number of nodes in the graph.
 	 * 
 	 * @param node
 	 * @return

@@ -16,7 +16,9 @@ public class NumberOfIslands {
 	}
 
 	/**
-	 * Solution with recursive DFS graph traversal.
+	 * Leetcode problem: https://leetcode.com/problems/number-of-islands. Solution
+	 * with recursive DFS graph traversal. Time complexity is O(m * n) where m is
+	 * the number of rows and n is the number of columns in the grid.
 	 * 
 	 * @param grid
 	 * @return
