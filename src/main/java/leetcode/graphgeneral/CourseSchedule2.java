@@ -27,7 +27,9 @@ public class CourseSchedule2 {
 	}
 
 	/**
-	 * This solution uses topological sort and BFS.
+	 * Leetcode problem: https://leetcode.com/problems/course-schedule-ii. This
+	 * solution uses topological sort and BFS. Time complexity is O(n+m) where n is
+	 * the number of courses and m is the length of the prerequisites array.
 	 * 
 	 * @param numCourses
 	 * @param prerequisites

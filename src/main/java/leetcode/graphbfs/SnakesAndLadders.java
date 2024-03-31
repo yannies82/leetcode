@@ -23,8 +23,10 @@ public class SnakesAndLadders {
 	}
 
 	/**
-	 * This solution uses a map for storing the indexes of the snakes and ladders
-	 * and their target values and BFS traversal until the target index is reached.
+	 * Leetcode problem: https://leetcode.com/problems/snakes-and-ladders. This
+	 * solution uses a map for storing the indexes of the snakes and ladders and
+	 * their target values and BFS traversal until the target index is reached. Time
+	 * complexity is O(n^2) where n is the length of the board.
 	 * 
 	 * @param board
 	 * @return

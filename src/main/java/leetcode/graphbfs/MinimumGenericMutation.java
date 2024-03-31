@@ -31,6 +31,7 @@ public class MinimumGenericMutation {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/minimum-genetic-mutation.
 	 * This solution searches for gene strings in the bank which differ by exactly
 	 * one char from the current mutation and puts them in the queue to perform BFS.
 	 * Keeps a set to mark visited mutations. Time complexity is O(B * B * C) where
