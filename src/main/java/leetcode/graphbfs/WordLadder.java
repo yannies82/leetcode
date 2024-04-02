@@ -20,11 +20,12 @@ public class WordLadder {
 	}
 
 	/**
-	 * This solution uses a set to keep the eligible words and performs BFS
-	 * traversal. It replaces every word with any possible one that differs by a
-	 * letter and puts in the queue the new words that also exist in the set. This
-	 * is repeated until the end word is reached.Time complexity is O(N^2 * M) where
-	 * N is the number of entries in the wordsList and M is the length of the word.
+	 * Leetcode problem: https://leetcode.com/problems/word-ladder. This solution
+	 * uses a set to keep the eligible words and performs BFS traversal. It replaces
+	 * every word with any possible one that differs by a letter and puts in the
+	 * queue the new words that also exist in the set. This is repeated until the
+	 * end word is reached.Time complexity is O(N^2 * M) where N is the number of
+	 * entries in the wordsList and M is the length of the word.
 	 * 
 	 * @param beginWord
 	 * @param endWord
@@ -61,7 +62,7 @@ public class WordLadder {
 				// convert it to a chars array so that it can be manipulated
 				char[] wordChars = levelWords.poll().toCharArray();
 				// try to replace every character of this word, one by one,
-				// with every character from 'a' to 'z' and put int he queue
+				// with every character from 'a' to 'z' and put in the queue
 				// the new words which exist in the set
 				for (int j = 0; j < wordSize; j++) {
 					// keep the original char so that it can be restored

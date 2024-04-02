@@ -3,6 +3,7 @@ package leetcode.trie;
 public class ImplementTrie {
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/implement-trie-prefix-tree.
 	 * Implementation of a trie using a Node element with an array representation of
 	 * all possible lowercase characters.
 	 * 

@@ -3,6 +3,8 @@ package leetcode.trie;
 public class WordDictionaries {
 
 	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/design-add-and-search-words-data-structure.
 	 * This implementation inserts new words in a trie structure. For searches it
 	 * uses recursion when the search term contains a '.' character, so that all
 	 * possible characters are checked.

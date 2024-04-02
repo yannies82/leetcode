@@ -17,9 +17,10 @@ public class WordSearch2 {
 	}
 
 	/**
-	 * This solution puts the target words in a trie structure. Then for all
-	 * starting positions on the board it traverses the trie using the adjacent
-	 * positions as next characters and returns the results, if it finds any.
+	 * Leetcode problem: https://leetcode.com/problems/word-search-ii. This solution
+	 * puts the target words in a trie structure. Then for all starting positions on
+	 * the board it traverses the trie using the adjacent positions as next
+	 * characters and returns the results, if it finds any.
 	 * 
 	 * @param board
 	 * @param words
