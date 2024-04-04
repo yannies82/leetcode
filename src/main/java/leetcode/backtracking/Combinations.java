@@ -14,6 +14,7 @@ public class Combinations {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/combinations.
 	 * This solution traverses recursively all eligible numbers and keeps the
 	 * results in a builder array. Every time the last level is reached, a list is
 	 * built from the builder array and is added to the results. Time complexity is

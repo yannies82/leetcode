@@ -17,10 +17,12 @@ public class LetterCombinationsPhoneNumber {
 			{ 'j', 'k', 'l' }, { 'm', 'n', 'o' }, { 'p', 'q', 'r', 's' }, { 't', 'u', 'v' }, { 'w', 'x', 'y', 'z' } };
 
 	/**
-	 * This solution traverses the given digits starting from index 0 and
-	 * recursively applies all combinations, increasing the index between levels.
-	 * Time complexity is O(N^M) where N is the number of characters per digit (3 or
-	 * 4) and M is the digits string length.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/letter-combinations-of-a-phone-number. This
+	 * solution traverses the given digits starting from index 0 and recursively
+	 * applies all combinations, increasing the index between levels. Time
+	 * complexity is O(N^M) where N is the number of characters per digit (3 or 4)
+	 * and M is the digits string length.
 	 * 
 	 * @param digits
 	 * @return
