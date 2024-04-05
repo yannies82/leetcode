@@ -20,11 +20,12 @@ public class Permutations {
 	}
 
 	/**
-	 * This solution traverses recursively all eligible numbers and keeps the
-	 * results in a builder array. A usedIndexes array is used to mark which indexes
-	 * have been used in the current traversal. Every time the last level is
-	 * reached, a list is built from the builder array and is added to the results.
-	 * Time complexity is O(N^N) where N is the size of the nums array.
+	 * Leetcode problem: https://leetcode.com/problems/permutations. This solution
+	 * traverses recursively all eligible numbers and keeps the results in a builder
+	 * array. A usedIndexes array is used to mark which indexes have been used in
+	 * the current traversal. Every time the last level is reached, a list is built
+	 * from the builder array and is added to the results. Time complexity is O(N^N)
+	 * where N is the size of the nums array.
 	 * 
 	 * @param nums
 	 * @return

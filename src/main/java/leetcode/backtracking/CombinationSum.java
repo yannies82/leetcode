@@ -19,6 +19,7 @@ public class CombinationSum {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/combination-sum.
 	 * This solution traverses recursively all candidate numbers and keeps the
 	 * results in a builder array. Every time the target sum is reached, a list is
 	 * built from the builder array and is added to the results. Worst case time
