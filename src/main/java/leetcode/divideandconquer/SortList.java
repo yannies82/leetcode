@@ -13,8 +13,9 @@ public class SortList {
 	}
 
 	/**
-	 * Merge sort implementation, splits the list in two subLists and merges them
-	 * recursively. Time complexity is O(N*logN) where N is the size of the list.
+	 * Leetcode problem: https://leetcode.com/problems/sort-list. Merge sort
+	 * implementation, splits the list in two subLists and merges them recursively.
+	 * Time complexity is O(N*logN) where N is the size of the list.
 	 * 
 	 * @param head
 	 * @return
