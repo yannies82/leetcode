@@ -11,7 +11,8 @@ public class GenerateParentheses {
 	}
 
 	/**
-	 * Solution using backtracking. Time complexity is O(2^n).
+	 * Leetcode problem: https://leetcode.com/problems/generate-parentheses. This
+	 * solution uses backtracking. Time complexity is O(2^n).
 	 * 
 	 * @param n
 	 * @return
@@ -35,7 +36,7 @@ public class GenerateParentheses {
 			builder.append("(");
 			open++;
 		} else {
-			// i = 0 denotes a closing parenthesis, append it to the builder and increase
+			// i = 1 denotes a closing parenthesis, append it to the builder and increase
 			// count
 			builder.append(")");
 			closed++;

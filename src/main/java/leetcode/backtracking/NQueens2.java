@@ -11,12 +11,13 @@ public class NQueens2 {
 	}
 
 	/**
-	 * This solution uses an int array n X n which represents all board positions.
-	 * It traverses recursively the board, starting at every position of the first
-	 * column. When a queen is placed at a position, +1 is added to all affected
-	 * positions. When backtracking, -1 is subtracted from all affected positions.
-	 * When we reach the last level (i.e. the queen is placed at the last column) +1
-	 * is added to the result. Time complexity is O( n ^ n).
+	 * Leetcode problem: https://leetcode.com/problems/n-queens-ii. This solution
+	 * uses an int array n X n which represents all board positions. It traverses
+	 * recursively the board, starting at every position of the first column. When a
+	 * queen is placed at a position, +1 is added to all affected positions. When
+	 * backtracking, -1 is subtracted from all affected positions. When we reach the
+	 * last level (i.e. the queen is placed at the last column) +1 is added to the
+	 * result. Time complexity is O( n ^ n).
 	 * 
 	 * @param n
 	 * @return
@@ -35,16 +36,16 @@ public class NQueens2 {
 
 	private static int calculateRecursive(int[][] board, int row, int column) {
 		int result = 0;
-		// set unavailable squares after placement of queen at board[row][column]
-		for (int j = 0; j < board.length; j++) {
-			markUnavailableSquares(board, row, column, j, 1);
-		}
 		if (column == board.length - 1) {
 			// we have reached the last column, we have a solution
 			result = 1;
 		} else {
-			// this is not the last column, traverse recursively
-			// all available positions of the next column
+			// this is not the last column
+			// set unavailable squares after placement of queen at board[row][column]
+			for (int j = 0; j < board.length; j++) {
+				markUnavailableSquares(board, row, column, j, 1);
+			}
+			// traverse recursively all available positions of the next column
 			int nextColumn = column + 1;
 			for (int j = 0; j < board.length; j++) {
 				// a position is available if its value is 0
@@ -53,12 +54,12 @@ public class NQueens2 {
 					result += calculateRecursive(board, j, nextColumn);
 				}
 			}
-		}
-		// when backtracking undo the effect of the placement of the queen
-		// at board[row][column] so that the board can be reused for
-		// sibling positions
-		for (int j = 0; j < board.length; j++) {
-			markUnavailableSquares(board, row, column, j, -1);
+			// when backtracking undo the effect of the placement of the queen
+			// at board[row][column] so that the board can be reused for
+			// sibling positions
+			for (int j = 0; j < board.length; j++) {
+				markUnavailableSquares(board, row, column, j, -1);
+			}
 		}
 		return result;
 	}

@@ -14,11 +14,12 @@ public class WordSearch {
 	}
 
 	/**
-	 * This solution traverses the board starting from every position and using
-	 * backtracking. For backtracking a utility array is used for marking the
-	 * visited positions for the current traversal. Time complexity is O(N * M * 4 *
-	 * W) where N is the number of board rows, M is the number of board columns and
-	 * W is the length of the word to find.
+	 * Leetcode problem: https://leetcode.com/problems/word-search. This solution
+	 * traverses the board starting from every position and using backtracking. For
+	 * backtracking a utility array is used for marking the visited positions for
+	 * the current traversal. Time complexity is O(N * M * 4 * W) where N is the
+	 * number of board rows, M is the number of board columns and W is the length of
+	 * the word to find.
 	 * 
 	 * @param board
 	 * @param word
