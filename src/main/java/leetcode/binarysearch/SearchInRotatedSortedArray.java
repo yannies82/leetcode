@@ -14,7 +14,9 @@ public class SearchInRotatedSortedArray {
 	}
 
 	/**
-	 * Performs a binary search to find the target value in the rotated sorted array. Time
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/search-in-rotated-sorted-array. Performs a
+	 * binary search to find the target value in the rotated sorted array. Time
 	 * complexity is O(logN) where N is the length of the array.
 	 * 
 	 * @param nums

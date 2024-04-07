@@ -11,6 +11,7 @@ public class SearchInsertPosition {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/search-insert-position.
 	 * Performs a binary search to find the target value in the sorted array. Time
 	 * complexity is O(logN) where N is the length of the array.
 	 * 

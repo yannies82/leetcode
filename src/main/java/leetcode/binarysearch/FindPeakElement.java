@@ -12,7 +12,8 @@ public class FindPeakElement {
 	}
 
 	/**
-	 * This solution uses binary search and has O(logN) time complexity.
+	 * Leetcode problem: https://leetcode.com/problems/find-peak-element. This
+	 * solution uses binary search and has O(logN) time complexity.
 	 * 
 	 * @param nums
 	 * @return

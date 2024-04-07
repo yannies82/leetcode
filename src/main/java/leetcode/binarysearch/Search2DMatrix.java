@@ -11,8 +11,9 @@ public class Search2DMatrix {
 	}
 
 	/**
-	 * Performs a binary search to find the target value in the sorted 2D array.
-	 * Time complexity is O(N*M*logN) where N, M are the dimensions of the array.
+	 * Leetcode problem: https://leetcode.com/problems/search-a-2d-matrix. Performs
+	 * a binary search to find the target value in the sorted 2D array. Time
+	 * complexity is O(log(N*M)) where N, M are the dimensions of the array.
 	 * 
 	 * @param matrix
 	 * @param target
