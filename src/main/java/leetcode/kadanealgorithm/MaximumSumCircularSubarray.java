@@ -18,9 +18,11 @@ public class MaximumSumCircularSubarray {
 	}
 
 	/**
-	 * This solution calculates the sum of all numbers, the maximum sum subarray and
-	 * the minimum sum subarray using Kadane's algorithm. Time complexity is O(N)
-	 * where N is the length of the array.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/maximum-sum-circular-subarray. This solution
+	 * calculates the sum of all numbers, the maximum sum subarray and the minimum
+	 * sum subarray using Kadane's algorithm. Time complexity is O(N) where N is the
+	 * length of the array.
 	 * 
 	 * @param nums
 	 * @return

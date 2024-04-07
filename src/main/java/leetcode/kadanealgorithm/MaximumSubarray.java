@@ -14,9 +14,10 @@ public class MaximumSubarray {
 	}
 
 	/**
-	 * This solution uses dynamic programming. It calculates the max sum until index
-	 * i and uses this result for the calculation of index i+1. The max of the max
-	 * sums is the result. Time complexity is O(N) where N is the length of the array.
+	 * This solution uses dynamic programming. It calculates the max expandable sum
+	 * until index i and uses this result for the calculation of index i+1. The max
+	 * of the max sums is the result. Time complexity is O(N) where N is the length
+	 * of the array.
 	 * 
 	 * @param nums
 	 * @return

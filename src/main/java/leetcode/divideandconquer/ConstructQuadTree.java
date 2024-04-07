@@ -19,9 +19,10 @@ public class ConstructQuadTree {
 	}
 
 	/**
-	 * This solution uses divide and conquer strategy for recursively mapping quads
-	 * into nodes until the quad is uniform. Time complexity is O(N^2*logN) where N
-	 * is the length of the grid array.
+	 * Leetcode problem: https://leetcode.com/problems/construct-quad-tree. This
+	 * solution uses divide and conquer strategy for recursively mapping quads into
+	 * nodes until the quad is uniform. Time complexity is O(N^2*logN) where N is
+	 * the length of the grid array.
 	 * 
 	 * @param grid
 	 * @return

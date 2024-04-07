@@ -17,7 +17,8 @@ public class MergeKSortedLists {
 	}
 
 	/**
-	 * This solution merges the lists in pairs until they are all merged in a single
+	 * Leetcode problem: https://leetcode.com/problems/merge-k-sorted-lists. This
+	 * solution merges the lists in pairs until they are all merged in a single
 	 * list. Time complexity is O(N * K * logK) where N is the size of each list and
 	 * K is the number of lists to be merged.
 	 * 
