@@ -12,7 +12,9 @@ public class FindMinimumInRotatedSortedArray {
 	}
 
 	/**
-	 * This solution uses binary search. Time complexity is O(logN).
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array. This
+	 * solution uses binary search. Time complexity is O(logN).
 	 * 
 	 * @param nums
 	 * @return

@@ -11,6 +11,7 @@ public class MedianOfTwoSortedArrays {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/median-of-two-sorted-arrays.
 	 * This solution uses binary search to find the indexes of the lower and higher
 	 * medians in the final array. Time complexity is O(log(min(m, n))) where m, n
 	 * the lengths of arrays nums1 and nums2 respectively.

@@ -14,6 +14,8 @@ public class FindFirstLastPosition {
 	}
 
 	/**
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array.
 	 * This solution performs two binary searches. The first finds the min index of
 	 * the target element and the second finds the max index of the target element.
 	 * The result is produced by combining the results of both searches. Time
