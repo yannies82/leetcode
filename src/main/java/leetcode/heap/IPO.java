@@ -15,10 +15,11 @@ public class IPO {
 	}
 
 	/**
-	 * This solution uses a priority queue to keep the eligible profits. Every time
-	 * that a project is completed, the capital is increased and the new eligible
-	 * profits are added to the queue until all projects are completed. Time
-	 * complexity is O(k * n * logn) where n is the profits array length.
+	 * Leetcode problem: https://leetcode.com/problems/ipo. This solution uses a
+	 * priority queue to keep the eligible profits. Every time that a project is
+	 * completed, the capital is increased and the new eligible profits are added to
+	 * the queue until all projects are completed. Time complexity is O(k * n *
+	 * logn) where n is the profits array length.
 	 * 
 	 * @param k
 	 * @param w

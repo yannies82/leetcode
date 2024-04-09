@@ -14,9 +14,11 @@ public class FindKPairsWithSmallestSum {
 	}
 
 	/**
-	 * Improved version of the priority queue solution which eliminates the need for
-	 * a set to prevent duplication and uses a traversal indicator for each pair
-	 * instead. Time complexity is O(k * logk).
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/find-k-pairs-with-smallest-sums. Improved
+	 * version of the priority queue solution which eliminates the need for a set to
+	 * prevent duplication and uses a traversal indicator for each pair instead.
+	 * Time complexity is O(k * logk).
 	 * 
 	 * @param nums1
 	 * @param nums2
