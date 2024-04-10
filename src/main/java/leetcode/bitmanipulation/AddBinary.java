@@ -7,8 +7,9 @@ public class AddBinary {
 	}
 
 	/**
-	 * Time complexity is O(max(A,B)) where A is the length of tha a array and B is
-	 * the length of the B array.
+	 * Leetcode problem: https://leetcode.com/problems/add-binary. Time complexity
+	 * is O(max(A,B)) where A is the length of the a array and B is the length of
+	 * the B array.
 	 * 
 	 * @param a
 	 * @param b

@@ -9,6 +9,16 @@ public class SingleNumber2 {
 		check(new int[] { 0, 1, 0, 1, 0, 1, 99 }, 99);
 	}
 
+	/**
+	 * Leetcode problem: https://leetcode.com/problems/single-number-ii. This
+	 * solution keeps two states for each bit. Each time a bit appears the states
+	 * transition from 00 to 10, 01, 00. Therefore, every 3 times that a bit appears
+	 * it gets reset to 0. This way, numbers that appear 3 times are cancelled out
+	 * and the odd one remains.
+	 * 
+	 * @param nums
+	 * @return
+	 */
 	public static int singleNumber(int[] nums) {
 		// keeps bits which have appeared 1 or 4 or 7 times etc.
 		int firstTime = 0;

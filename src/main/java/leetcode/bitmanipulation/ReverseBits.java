@@ -8,8 +8,8 @@ public class ReverseBits {
 	}
 
 	/**
-	 * Performs the calculation by bit shifting every position in n and adding to
-	 * the result.
+	 * Leetcode problem: https://leetcode.com/problems/reverse-bits. Performs the
+	 * calculation by bit shifting every position in n and adding to the result.
 	 * 
 	 * @param n
 	 * @return
