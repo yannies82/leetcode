@@ -10,8 +10,9 @@ public class BitwiseAndOfNumbersRange {
 	}
 
 	/**
-	 * Performs the calculation by finding the most significant bit which is
-	 * different between left and right.
+	 * Leetcode problem: https://leetcode.com/problems/bitwise-and-of-numbers-range.
+	 * This solution performs the calculation by finding the most significant bit
+	 * which is different between left and right. Time complexity is O(1).
 	 * 
 	 * @param n
 	 * @return

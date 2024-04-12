@@ -14,9 +14,10 @@ public class WordBreak {
 	}
 
 	/**
-	 * This solution uses a trie to store the dictionary words and dynamic
-	 * programming to solve the subproblems for all substrings of string s. Time
-	 * complexity is O(n^2) where n is the length of string s.
+	 * Leetcode problem: https://leetcode.com/problems/word-break. This solution
+	 * uses a trie to store the dictionary words and top down dynamic programming to
+	 * solve the subproblems for all substrings of string s. Time complexity is
+	 * O(n^2) where n is the length of string s.
 	 * 
 	 * @param s
 	 * @param wordDict
@@ -84,9 +85,9 @@ public class WordBreak {
 	}
 
 	/**
-	 * This solution uses dynamic programming to solve the subproblems for all
-	 * substrings of string s. Time complexity is O(n^2) where n is the length of
-	 * string s.
+	 * This solution uses bottom up dynamic programming to solve the subproblems for
+	 * all substrings of string s. Time complexity is O(n^2) where n is the length
+	 * of string s.
 	 * 
 	 * @param s
 	 * @param wordDict

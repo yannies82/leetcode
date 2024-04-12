@@ -10,8 +10,8 @@ public class Pow {
 	}
 
 	/**
-	 * This solution uses the bits of n to multiply the x number. Time complexity is
-	 * O(logn).
+	 * Leetcode problem: https://leetcode.com/problems/powx-n. This solution uses
+	 * the bits of n to multiply the x number. Time complexity is O(logn).
 	 * 
 	 * @param x
 	 * @param n
@@ -49,7 +49,8 @@ public class Pow {
 		if (n == 1) {
 			return x;
 		}
-		double calc = myPow(x, n / 2);
+		// recursively calculate  x ^ n/2
+		double calc = myPow2(x, n / 2);
 		if (n % 2 == 0) {
 			return calc * calc;
 		} else if (n > 0) {

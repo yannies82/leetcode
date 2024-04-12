@@ -10,6 +10,7 @@ public class NumberOf1Bits {
 	/**
 	 * Leetcode problem: https://leetcode.com/problems/number-of-1-bits. Performs
 	 * the calculation by bit shifting every position in n and adding to the result.
+	 * Time complexity is O(1).
 	 * 
 	 * @param n
 	 * @return

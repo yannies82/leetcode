@@ -10,6 +10,7 @@ public class ReverseBits {
 	/**
 	 * Leetcode problem: https://leetcode.com/problems/reverse-bits. Performs the
 	 * calculation by bit shifting every position in n and adding to the result.
+	 * Time complexity is O(1).
 	 * 
 	 * @param n
 	 * @return

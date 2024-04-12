@@ -14,7 +14,7 @@ public class SingleNumber2 {
 	 * solution keeps two states for each bit. Each time a bit appears the states
 	 * transition from 00 to 10, 01, 00. Therefore, every 3 times that a bit appears
 	 * it gets reset to 0. This way, numbers that appear 3 times are cancelled out
-	 * and the odd one remains.
+	 * and the odd one remains. Time complexity is O(1).
 	 * 
 	 * @param nums
 	 * @return

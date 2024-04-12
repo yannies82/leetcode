@@ -10,14 +10,15 @@ public class PlusOne {
 	}
 
 	/**
-	 * Time complexity is O(N) where N is the digits length.
+	 * Leetcode problem: https://leetcode.com/problems/plus-one. Time complexity is
+	 * O(N) where N is the digits length.
 	 * 
 	 * @param digits
 	 * @return
 	 */
 	public static int[] plusOne(int[] digits) {
 		int carry = 1;
-		for (int i = digits.length - 1; i >= 0; i--) {
+		for (int i = digits.length - 1; i >= 0 && carry > 0; i--) {
 			int sum = digits[i] + carry;
 			carry = sum / 10;
 			digits[i] = sum % 10;

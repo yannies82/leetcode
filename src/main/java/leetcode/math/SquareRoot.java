@@ -10,8 +10,9 @@ public class SquareRoot {
 	}
 
 	/**
-	 * This solution uses binary search to find the smallest number whose square is
-	 * larger than x. Time complexity is O(logx).
+	 * Leetcode problem: https://leetcode.com/problems/sqrtx. This solution uses
+	 * binary search to find the smallest number whose square is larger than x. Time
+	 * complexity is O(logx).
 	 * 
 	 * @param x
 	 * @return

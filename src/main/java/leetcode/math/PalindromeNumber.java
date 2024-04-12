@@ -9,7 +9,8 @@ public class PalindromeNumber {
 	}
 
 	/**
-	 * Finds the solution by constructing the sum of the digits of x with reversed
+	 * Leetcode problem: https://leetcode.com/problems/palindrome-number. Finds the
+	 * solution by constructing the sum of the digits of x with reversed
 	 * significance. Time complexity is O(X) where X is the number of digits of x.
 	 * 
 	 * @param x

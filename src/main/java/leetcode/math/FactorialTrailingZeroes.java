@@ -11,6 +11,7 @@ public class FactorialTrailingZeroes {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/factorial-trailing-zeroes.
 	 * Optimized solution which takes into consideration that trailing zeroes are
 	 * added every time that we multiply with a factor of 5. Time complexity is
 	 * O(logn) with a base of 5.

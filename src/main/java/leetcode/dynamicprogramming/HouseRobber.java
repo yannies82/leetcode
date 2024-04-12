@@ -10,9 +10,10 @@ public class HouseRobber {
 	}
 
 	/**
-	 * This solution uses dynamic programming to store the values for each array
-	 * position and re use them for the calculations that need them. Time complexity
-	 * is O(n) where n is the nums array length.
+	 * Leetcode problem: https://leetcode.com/problems/house-robber. This solution
+	 * uses top down dynamic programming to store the values for each array position
+	 * and re use them for the calculations that need them. Time complexity is O(n)
+	 * where n is the nums array length.
 	 * 
 	 * @param nums
 	 * @return
@@ -26,14 +27,12 @@ public class HouseRobber {
 		int[] dpArray = new int[nums.length];
 		// set the known values for n = 0 and n = 1
 		dpArray[0] = nums[0];
-		dpArray[1] = nums[1];
+		dpArray[1] = Math.max(nums[0], nums[1]);
 		// initialize rest of dpArray values so that we know they are not calculated
 		for (int i = 2; i < nums.length; i++) {
 			dpArray[i] = -1;
 		}
-		// return the max of the dp value of the last two array positions, one of them
-		// will have to be selected
-		return Math.max(dp(nums.length - 1, nums, dpArray), dp(nums.length - 2, nums, dpArray));
+		return dp(nums.length - 1, nums, dpArray);
 	}
 
 	private static int dp(int target, int[] nums, int[] dpArray) {
@@ -43,11 +42,37 @@ public class HouseRobber {
 		}
 		if (dpArray[target] == -1) {
 			// return cached value, calculate and cache it if it is not calculated yet
-			// the previous element cannot be selected, so we should select the max
-			// between the target - 2 and the target - 3 element
-			dpArray[target] = nums[target] + Math.max(dp(target - 2, nums, dpArray), dp(target - 3, nums, dpArray));
+			// the solution of this problem is the max between the solution for target - 1
+			// and
+			// the solution for target - 2 plus the value at target index
+			dpArray[target] = Math.max(dp(target - 1, nums, dpArray), dp(target - 2, nums, dpArray) + nums[target]);
 		}
 		return dpArray[target];
+	}
+
+	/**
+	 * This solution uses bottom up dynamic programming. Time complexity is O(n)
+	 * where n is the length of the nums array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public static int rob2(int[] nums) {
+		// early exit if there is only one house
+		if (nums.length == 1) {
+			return nums[0];
+		}
+		// this array caches the intermediate results up to index i
+		int[] dpArray = new int[nums.length];
+		// set the known values for n = 0 and n = 1
+		dpArray[0] = nums[0];
+		dpArray[1] = Math.max(nums[0], nums[1]);
+		// calculate the rest of the dpArray values bottom up
+		for (int i = 2; i < nums.length; i++) {
+			dpArray[i] = Math.max(dpArray[i - 1], dpArray[i - 2] + nums[i]);
+		}
+		// return the last value of the dpArray which is the answer to our problem
+		return dpArray[nums.length - 1];
 	}
 
 	private static void check(int[] nums, int expected) {

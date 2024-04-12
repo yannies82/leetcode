@@ -12,7 +12,8 @@ public class MaxPointsOnALine {
 	}
 
 	/**
-	 * This solution calculates the tangent of the lines between every two distinct
+	 * Leetcode problem: https://leetcode.com/problems/max-points-on-a-line. This
+	 * solution calculates the tangent of the lines between every two distinct
 	 * points and keeps a count of the lines which have the same tangent for each
 	 * separate point. Time complexity is O(n^2) where n is the number of points.
 	 * 

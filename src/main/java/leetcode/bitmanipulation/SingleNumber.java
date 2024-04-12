@@ -13,7 +13,7 @@ public class SingleNumber {
 	 * Leetcode problem: https://leetcode.com/problems/single-number. Performs the
 	 * calculation by applying xor to all numbers. Xor between 2 same numbers
 	 * returns zero, therefore the duplicate numbers are cancelled out and the
-	 * single one is what remains as a result.
+	 * single one is what remains as a result. Time complexity is O(1).
 	 * 
 	 * @param n
 	 * @return
