@@ -12,9 +12,10 @@ public class CoinChange {
 	}
 
 	/**
-	 * This solution uses bottom up dynamic programming to calculate the subproblems
-	 * from 0 to amount. Time complexity is O(n * m) where n is the coins array
-	 * length and m is the amount as integer.
+	 * Leetcode problem: https://leetcode.com/problems/coin-change. This solution
+	 * uses bottom up dynamic programming to calculate the subproblems from 0 to
+	 * amount. Time complexity is O(n * m) where n is the coins array length and m
+	 * is the amount as integer.
 	 * 
 	 * @param coins
 	 * @param amount

@@ -13,11 +13,12 @@ public class MaximalSquare {
 	}
 
 	/**
-	 * This solution uses dynamic programming to store the results of intermediate
-	 * subproblems. It iterates every position of the matrix and calculates the
-	 * largest possible square of '1's that exists with the specific position as
-	 * lowest right. Time complexity is O(m*n) where m is the number of rows and n
-	 * is the number of columns.
+	 * Leetcode problem: https://leetcode.com/problems/maximal-square. This solution
+	 * uses dynamic programming to store the results of intermediate subproblems. It
+	 * iterates every position of the matrix and calculates the largest possible
+	 * square of '1's that exists with the specific position as lowest right. Time
+	 * complexity is O(m*n) where m is the number of rows and n is the number of
+	 * columns.
 	 * 
 	 * @param matrix
 	 * @return

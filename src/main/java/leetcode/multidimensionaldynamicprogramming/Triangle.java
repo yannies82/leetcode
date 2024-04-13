@@ -10,9 +10,10 @@ public class Triangle {
 	}
 
 	/**
-	 * This solution uses bottom up dynamic programming to calculate the values for
-	 * all subproblems, then picks the minimum from the last row solutions. Time
-	 * complexity is O(n^2) where n is the triangle length;
+	 * Leetcode problem: https://leetcode.com/problems/triangle. This solution uses
+	 * bottom up dynamic programming to calculate the values for all subproblems,
+	 * then picks the minimum from the last row solutions. Time complexity is O(n^2)
+	 * where n is the triangle length;
 	 * 
 	 * @param triangle
 	 * @return

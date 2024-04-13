@@ -11,11 +11,13 @@ public class LongestIncreasingSubsequence {
 	}
 
 	/**
-	 * This solution iterates the numbers and keeps the longest subsequence in an
-	 * array. If the next number is greater than the previous one, it is added to
-	 * the array. If it is smaller, binary search is performed in the result array
-	 * and the number overwrites an existing element. Time complexity is O(n*logn)
-	 * where n is the length of the nums array.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/longest-increasing-subsequence. This solution
+	 * iterates the numbers and keeps the longest subsequence in an array. If the
+	 * next number is greater than the previous one, it is added to the array. If it
+	 * is smaller, binary search is performed in the result array and the number
+	 * overwrites an existing element. Time complexity is O(n*logn) where n is the
+	 * length of the nums array.
 	 * 
 	 * @param nums
 	 * @return
