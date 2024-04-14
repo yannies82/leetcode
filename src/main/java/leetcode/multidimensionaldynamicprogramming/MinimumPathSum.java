@@ -10,8 +10,9 @@ public class MinimumPathSum {
 	}
 
 	/**
-	 * This solution uses top down dynamic programming to store the subproblem
-	 * solutions and reuse them in order to produce the final problem solution. Time
+	 * Leetcode problem: https://leetcode.com/problems/minimum-path-sum. This
+	 * solution uses top down dynamic programming to store the subproblem solutions
+	 * and reuse them in order to produce the final problem solution. Time
 	 * complexity is O(m*n) where m is the grid row count and n is the grid column
 	 * count.
 	 * 
@@ -35,8 +36,7 @@ public class MinimumPathSum {
 		// solution for the first element of the 2D grid
 		dpArray[0][0] = grid[0][0];
 		// recursively calculate the solution for the last array element
-		return Math.min(dp(grid, rowCount - 1, columnCount - 2, dpArray),
-				dp(grid, rowCount - 2, columnCount - 1, dpArray)) + grid[rowCount - 1][columnCount - 1];
+		return dp(grid, rowCount - 1, columnCount - 1, dpArray);
 	}
 
 	private static int dp(int[][] grid, int i, int j, int[][] dpArray) {

@@ -9,11 +9,13 @@ public class LongestPalindromicSubstring {
 	}
 
 	/**
-	 * This solution uses all positions of string s as starting positions and
-	 * searches for palindrome strings by decreasing the start index and increasing
-	 * the end index. Sequences of the same character are inherently palindrome and
-	 * are searched only once for the full sequence. Time complexity is O(n^2) where
-	 * n is the length of string s.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/longest-palindromic-substring. This solution
+	 * uses all positions of string s as starting positions and searches for
+	 * palindrome strings by decreasing the start index and increasing the end
+	 * index. Sequences of the same character are inherently palindrome and are
+	 * searched only once for the full sequence. Time complexity is O(n^2) where n
+	 * is the length of string s.
 	 * 
 	 * @param s
 	 * @return

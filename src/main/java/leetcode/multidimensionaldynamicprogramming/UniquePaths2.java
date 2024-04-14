@@ -10,8 +10,9 @@ public class UniquePaths2 {
 	}
 
 	/**
-	 * This solution uses top down dynamic programming to store the subproblem
-	 * solutions and reuse them in order to produce the final problem solution. Time
+	 * Leetcode problem: https://leetcode.com/problems/unique-paths-ii. This
+	 * solution uses top down dynamic programming to store the subproblem solutions
+	 * and reuse them in order to produce the final problem solution. Time
 	 * complexity is O(m*n) where m is the grid row count and n is the grid column
 	 * count.
 	 * 
@@ -39,8 +40,7 @@ public class UniquePaths2 {
 		// solution for the first element of the 2D grid
 		dpArray[0][0] = 1;
 		// recursively calculate the solution for the last array element
-		return dp(obstacleGrid, rowCount - 1, columnCount - 2, dpArray)
-				+ dp(obstacleGrid, rowCount - 2, columnCount - 1, dpArray);
+		return dp(obstacleGrid, rowCount - 1, columnCount - 1, dpArray);
 	}
 
 	private static int dp(int[][] obstacleGrid, int i, int j, int[][] dpArray) {

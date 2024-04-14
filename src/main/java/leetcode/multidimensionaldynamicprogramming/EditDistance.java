@@ -10,9 +10,10 @@ public class EditDistance {
 	}
 
 	/**
-	 * This solution uses top down dynamic programming to calculate solutions to
-	 * subproblems and return the final solution. Time complexity is O(m*n) where m
-	 * is the length of word1 and n is the length of word2.
+	 * Leetcode problem: https://leetcode.com/problems/edit-distance. This solution
+	 * uses top down dynamic programming to calculate solutions to subproblems and
+	 * return the final solution. Time complexity is O(m*n) where m is the length of
+	 * word1 and n is the length of word2.
 	 * 
 	 * @param s1
 	 * @param s2

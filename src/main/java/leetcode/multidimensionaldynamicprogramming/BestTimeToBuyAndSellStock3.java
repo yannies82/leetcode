@@ -12,9 +12,11 @@ public class BestTimeToBuyAndSellStock3 {
 	}
 
 	/**
-	 * This solution divides the problem into two subproblems (find the maxProfit
-	 * when only one transaction is allowed) and uses bottom up dynamic programming
-	 * to calculate all intermediate solutions to the two subproblems. The final
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii. This
+	 * solution divides the problem into two subproblems (find the maxProfit when
+	 * only one transaction is allowed) and uses bottom up dynamic programming to
+	 * calculate all intermediate solutions to the two subproblems. The final
 	 * solution will occur at the index where the sum of the subproblem solutions is
 	 * maximized. Time complexity is O(n) where n is the prices array length.
 	 * 

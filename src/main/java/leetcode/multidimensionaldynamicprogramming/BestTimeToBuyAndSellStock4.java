@@ -12,7 +12,9 @@ public class BestTimeToBuyAndSellStock4 {
 	}
 
 	/**
-	 * This solution uses bottom up dynamic programming and a 2D array to store the
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv. This
+	 * solution uses bottom up dynamic programming and a 2D array to store the
 	 * results of all subproblems for transactionCount 0 to k and for days 0 to
 	 * prices.length. Time complexity is O(k*n) where n is the length of the prices
 	 * array.

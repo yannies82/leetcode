@@ -9,7 +9,8 @@ public class InterleavingString {
 	}
 
 	/**
-	 * This solution uses top down dynamic programming to calculate solutions to
+	 * Leetcode problem: https://leetcode.com/problems/interleaving-string. This
+	 * solution uses top down dynamic programming to calculate solutions to
 	 * subproblems and return the final solution. Time complexity is O(m*n) where m
 	 * is the length of s1 and n is the length of s2.
 	 * 
