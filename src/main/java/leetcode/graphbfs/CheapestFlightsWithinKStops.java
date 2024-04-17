@@ -18,7 +18,9 @@ public class CheapestFlightsWithinKStops {
 	}
 
 	/**
-	 * This solution uses the Djikstra algorithm. Time complexity is O(n).
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/cheapest-flights-within-k-stops. This solution
+	 * uses the Djikstra algorithm. Time complexity is O(n).
 	 * 
 	 * @param n
 	 * @param flights
