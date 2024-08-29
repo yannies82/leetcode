@@ -1,4 +1,4 @@
-package leetcode.graphgeneral;
+package leetcode.graphunionfind;
 
 import java.util.Arrays;
 
