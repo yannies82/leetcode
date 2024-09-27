@@ -1,23 +1,28 @@
-package leetcode.linkedlists;
+package leetcode.intervals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 
-public class MyCalendar1 {
+public class MyCalendarOne {
 
 	public static void main(String[] args) {
 		MyCalendar calendar = new MyCalendar();
-		System.out.println("book [10, 20] is: " + calendar.book(10, 20) + ", expected is: true");
-		System.out.println("book [15, 25] is: " + calendar.book(15, 25) + ", expected is: false");
-		System.out.println("book [20, 30] is: " + calendar.book(20, 30) + ", expected is: true");
+		check(10, 20, calendar::book, true);
+		check(15, 25, calendar::book, false);
+		check(20, 30, calendar::book, true);
 		MyCalendar2 calendar2 = new MyCalendar2();
-		System.out.println("book [10, 20] is: " + calendar2.book(10, 20) + ", expected is: true");
-		System.out.println("book [15, 25] is: " + calendar2.book(15, 25) + ", expected is: false");
-		System.out.println("book [20, 30] is: " + calendar2.book(20, 30) + ", expected is: true");
+		check(10, 20, calendar2::book, true);
+		check(15, 25, calendar2::book, false);
+		check(20, 30, calendar2::book, true);
 		MyCalendar3 calendar3 = new MyCalendar3();
-		System.out.println("book [10, 20] is: " + calendar3.book(10, 20) + ", expected is: true");
-		System.out.println("book [15, 25] is: " + calendar3.book(15, 25) + ", expected is: false");
-		System.out.println("book [20, 30] is: " + calendar3.book(20, 30) + ", expected is: true");
+		check(10, 20, calendar3::book, true);
+		check(15, 25, calendar3::book, false);
+		check(20, 30, calendar3::book, true);
+		MyCalendar4 calendar4 = new MyCalendar4();
+		check(10, 20, calendar4::book, true);
+		check(15, 25, calendar4::book, false);
+		check(20, 30, calendar4::book, true);
 	}
 
 	/**
@@ -180,6 +185,36 @@ public class MyCalendar1 {
 			this.end = end;
 			this.next = next;
 		}
+	}
+
+	/**
+	 * Simple but effective solution using arraylist. Time complexity for the book
+	 * operation is O(n) where n is the number of events in the calendar.
+	 * 
+	 * @author yanni
+	 *
+	 */
+	private static class MyCalendar4 {
+
+		int[][] events = new int[1000][2];
+
+		int eventsIndex = 0;
+
+		public boolean book(int start, int end) {
+			for (int i = 0; i < eventsIndex; i++) {
+				if (Math.max(events[i][0], start) < Math.min(events[i][1], end)) {
+					return false;
+				}
+			}
+			events[eventsIndex][0] = start;
+			events[eventsIndex++][1] = end;
+			return true;
+		}
+	}
+
+	private static void check(int start, int end, BiFunction<Integer, Integer, Boolean> function, boolean expected) {
+		System.out.println(
+				"book [" + start + ", " + end + "] is: " + function.apply(start, end) + ", expected is: " + expected);
 	}
 
 }
