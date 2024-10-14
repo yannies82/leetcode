@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class CompareVersionNumbers {
 
@@ -21,47 +21,35 @@ public class CompareVersionNumbers {
 	 * @return
 	 */
 	public static int compareVersion(String version1, String version2) {
-		int revision1 = 0;
-		int revision2 = 0;
-		int index1 = -1;
-		int index2 = -1;
-		// skip leading zeroes for both version strings
-		while (++index1 < version1.length() && version1.charAt(index1) == '0');
-		while (++index2 < version2.length() && version2.charAt(index2) == '0');
+		int index1 = 0;
+		int index2 = 0;
 		while (index1 < version1.length() || index2 < version2.length()) {
-			if (index1 < version1.length()) {
+			int revision1 = 0;
+			int revision2 = 0;
+			// skip leading zeroes of next revision
+			while (index1 < version1.length() && version1.charAt(index1) == '0') {
+				index1++;
+			}
+			while (index2 < version2.length() && version2.charAt(index2) == '0') {
+				index2++;
+			}
+			char v1Char;
+			while (index1 < version1.length() && (v1Char = version1.charAt(index1++)) != '.') {
 				// append to first revision number
-				char v1Char = version1.charAt(index1);
-				if (v1Char != '.') {
-					revision1 *= 10;
-					revision1 += v1Char - '0';
-					index1++;
-				}
+				revision1 *= 10;
+				revision1 += v1Char - '0';
 			}
-			if (index2 < version2.length()) {
-				// append to second revision number
-				char v2Char = version2.charAt(index2);
-				if (v2Char != '.') {
-					revision2 *= 10;
-					revision2 += v2Char - '0';
-					index2++;
-				}
+			char v2Char;
+			while (index2 < version2.length() && (v2Char = version2.charAt(index2++)) != '.') {
+				// append to first revision number
+				revision2 *= 10;
+				revision2 += v2Char - '0';
 			}
-			if ((index1 >= version1.length() || version1.charAt(index1) == '.')
-					&& (index2 >= version2.length() || version2.charAt(index2) == '.')) {
-				// when both version strings have reached a dot or are over then compare the revisions
-				if (revision1 < revision2) {
-					return -1;
-				} else if (revision1 > revision2) {
-					return 1;
-				}
-				// the revisions are equal, reset them in order to calculate the next ones
-				revision1 = 0;
-				revision2 = 0;
-				// skip leading zeroes of next revision
-				while (++index1 < version1.length() && version1.charAt(index1) == '0');
-				while (++index2 < version2.length() && version2.charAt(index2) == '0');
+			int result = Integer.compare(revision1, revision2);
+			if (result != 0) {
+				return result;
 			}
+			// the revisions are equal, continue to the next one
 		}
 		return 0;
 	}
@@ -79,20 +67,19 @@ public class CompareVersionNumbers {
 		String[] tokens1 = version1.split("\\.");
 		String[] tokens2 = version2.split("\\.");
 		int index = 0;
-		Integer zero = 0;
 		while (index < tokens1.length || index < tokens2.length) {
-			Integer num1 = zero;
+			int num1 = 0;
 			// parse value of first token
 			if (index < tokens1.length) {
-				num1 = Integer.valueOf(tokens1[index]);
+				num1 = Integer.parseInt(tokens1[index]);
 			}
 			// parse value of second token
-			Integer num2 = zero;
+			int num2 = 0;
 			if (index < tokens2.length) {
-				num2 = Integer.valueOf(tokens2[index]);
+				num2 = Integer.parseInt(tokens2[index]);
 			}
 			// compare tokens, return if non zero
-			int result = num1.compareTo(num2);
+			int result = Integer.compare(num1, num2);
 			if (result != 0) {
 				return result;
 			}

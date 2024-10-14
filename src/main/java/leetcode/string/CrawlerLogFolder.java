@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 import java.util.Arrays;
 
@@ -19,12 +19,12 @@ public class CrawlerLogFolder {
 	public static int minOperations(String[] logs) {
 		int minActions = 0;
 		for (int i = 0; i < logs.length; i++) {
-			int action = switch (logs[i]) {
+			minActions += switch (logs[i]) {
 			case "./" -> 0;
-			case "../" -> -1;
+			// branchless, equivalent to if minActions == 0 then 0 else -1
+			case "../" -> ((minActions - 1) >>> 31) - 1;
 			default -> 1;
 			};
-			minActions = Math.max(minActions + action, 0);
 		}
 		return minActions;
 	}

@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.intervals;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.frequency;
 
 public class CustomSortString {
 
