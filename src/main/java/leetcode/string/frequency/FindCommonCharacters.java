@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.frequency;
 
 import java.util.ArrayList;
 import java.util.Arrays;

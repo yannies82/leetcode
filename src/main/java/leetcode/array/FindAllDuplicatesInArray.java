@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,7 +38,7 @@ public class FindAllDuplicatesInArray {
 			int absNumber = Math.abs(nums[i]);
 			int targetIndex = absNumber - 1;
 			if (nums[targetIndex] < 0) {
-				// the number at target indexx is already negated, add to result
+				// the number at target index is already negated, add to result
 				result.add(absNumber);
 			} else {
 				// negate the number at target index

@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class FirstOccurenceInString {
 
@@ -22,6 +22,32 @@ public class FirstOccurenceInString {
 	 * @return
 	 */
 	public static int strStr(String haystack, String needle) {
+		char[] haystackChars = haystack.toCharArray();
+		char[] needleChars = needle.toCharArray();
+		int length = haystackChars.length;
+		int needleLength = needleChars.length;
+		int max = length - needleLength;
+		char first = needleChars[0];
+		int index = 0;
+		while (true) {
+			while (index <= max && haystackChars[index] != first) {
+				index++;
+			}
+			if (index > max) {
+				return -1;
+			}
+			int needleIndex = 1;
+			while (needleIndex < needleLength && haystackChars[index + needleIndex] == needleChars[needleIndex]) {
+				needleIndex++;
+			}
+			if (needleIndex == needleLength) {
+				return index;
+			}
+			index++;
+		}
+	}
+
+	public static int strStr2(String haystack, String needle) {
 		int length = haystack.length();
 		int needleLength = needle.length();
 		int max = length - needleLength;
@@ -44,7 +70,7 @@ public class FirstOccurenceInString {
 		return -1;
 	}
 
-	public static int strStr2(String haystack, String needle) {
+	public static int strStr3(String haystack, String needle) {
 		int length = haystack.length();
 		int needleLength = needle.length();
 		int max = length - needleLength;

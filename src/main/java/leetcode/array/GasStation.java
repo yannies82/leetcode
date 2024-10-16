@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array;
 
 import java.util.Arrays;
 
@@ -29,9 +29,8 @@ public class GasStation {
 		for (int i = 0; i < length; i++) {
 			sum += gas[i] - cost[i];
 			if (sum < 0) {
-				// the supplied gas is less than the cost
-				// try the next index which will have this adverse
-				// position as the last to deal with
+				// the remaining gas at this station is less than the cost of reaching the next
+				// station, try starting from the next station
 				candidateIndex = i + 1;
 				sum = 0;
 			}

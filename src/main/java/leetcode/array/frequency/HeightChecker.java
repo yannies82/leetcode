@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array.frequency;
 
 import java.util.Arrays;
 
@@ -13,12 +13,37 @@ public class HeightChecker {
 
 	/**
 	 * Leetcode problem: https://leetcode.com/problems/height-checker. Time
-	 * complexity is O(nlogn) where n is the length of the heights array.
+	 * complexity is O(n) where n is the length of the heights array.
 	 * 
 	 * @param heights
 	 * @return
 	 */
 	public static int heightChecker(int[] heights) {
+		int[] frequency = new int[101];
+		for (int i = 0; i < heights.length; i++) {
+			frequency[heights[i]]++;
+		}
+		int diff = 0;
+		int index = 0;
+		for (int i = 0; i < frequency.length; i++) {
+			while (frequency[i] > 0) {
+				if (heights[index++] != i) {
+					diff++;
+				}
+				frequency[i]--;
+			}
+		}
+		return diff;
+	}
+
+	/**
+	 * Alternate solution. Time complexity is O(nlogn) where n is the length of the
+	 * heights array.
+	 * 
+	 * @param heights
+	 * @return
+	 */
+	public static int heightChecker2(int[] heights) {
 		int[] expected = new int[heights.length];
 		System.arraycopy(heights, 0, expected, 0, heights.length);
 		Arrays.sort(expected);

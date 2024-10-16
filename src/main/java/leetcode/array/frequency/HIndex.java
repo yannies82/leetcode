@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array.frequency;
 
 import java.util.Arrays;
 
@@ -21,19 +21,21 @@ public class HIndex {
 	 */
 	public static int hIndex(int[] citations) {
 		int length = citations.length;
-		short[] occurences = new short[1001];
+		short[] frequency = new short[1001];
 		short maxCitations = 0;
 		for (short i = 0; i < length; i++) {
 			short currentCitations = (short) citations[i];
 			if (currentCitations > maxCitations) {
 				maxCitations = currentCitations;
 			}
-			occurences[currentCitations]++;
+			frequency[currentCitations]++;
 		}
-		short totalOccurences = 0;
+		short paperCount = 0;
 		for (short i = maxCitations; i >= 0; i--) {
-			totalOccurences += occurences[i];
-			if (i <= totalOccurences) {
+			paperCount += frequency[i];
+			// the researcher has published paperCount papers with at least i citations
+			if (paperCount >= i) {
+				// since paperCount >= i, by definition hIndex = i
 				return i;
 			}
 		}
@@ -53,7 +55,7 @@ public class HIndex {
 		Arrays.sort(citations);
 		int length = citations.length;
 		for (int i = length - 1; i >= 0; i--) {
-			if (citations[i] <= length - i) {
+			if (citations[i] < length - i) {
 				return length - i - 1;
 			}
 		}

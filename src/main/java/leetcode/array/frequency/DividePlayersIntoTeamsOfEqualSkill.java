@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array.frequency;
 
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ public class DividePlayersIntoTeamsOfEqualSkill {
 		int[] frequency = new int[1001];
 		int min = skill[0];
 		int max = skill[0];
-		for (int i = 0; i < skill.length; i++) {
+		for (int i = 1; i < skill.length; i++) {
 			if (skill[i] < min) {
 				min = skill[i];
 			} else if (skill[i] > max) {

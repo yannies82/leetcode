@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.slidingwindow;
 
 import java.util.Arrays;
 
@@ -21,6 +21,40 @@ public class GrumpyBookstoreOwner {
 	 * @return
 	 */
 	public static int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
+		int windowHappyCustomers = 0;
+		int defaultHappyCustomers = 0;
+		// iterate customers up to minutes and calculate the default number of happy
+		// ones according to the grumpy array values
+		// also calculate the ones that would be happy if the owner was happy
+		for (int i = 0; i < minutes; i++) {
+			defaultHappyCustomers += customers[i] * (1 - grumpy[i]);
+			windowHappyCustomers += customers[i] * grumpy[i];
+		}
+		int maxWindowHappyCustomers = windowHappyCustomers;
+		// iterate the rest of the customers and calculate the default number of happy
+		// ones according to the grumpy array values
+		// also calculate the extra happy customers if the owner's happy window starts
+		// at i - minutes and ends at i
+		for (int i = minutes; i < customers.length; i++) {
+			defaultHappyCustomers += customers[i] * (1 - grumpy[i]);
+			int windowStart = i - minutes;
+			windowHappyCustomers += customers[i] * grumpy[i] - customers[windowStart] * grumpy[windowStart];
+			// update the maxWindowHappyCustomers
+			maxWindowHappyCustomers = Math.max(windowHappyCustomers, maxWindowHappyCustomers);
+		}
+		return defaultHappyCustomers + maxWindowHappyCustomers;
+	}
+
+	/**
+	 * Alternate solution, single loop. Time complexity is O(n) where n is the
+	 * length of the customers array.
+	 * 
+	 * @param customers
+	 * @param grumpy
+	 * @param minutes
+	 * @return
+	 */
+	public static int maxSatisfied2(int[] customers, int[] grumpy, int minutes) {
 		int maxHappinessDiff = 0;
 		int happinessDiff = 0;
 		int defaultHappyCustomers = 0;

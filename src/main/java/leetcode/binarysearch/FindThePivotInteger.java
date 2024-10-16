@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.binarysearch;
 
 public class FindThePivotInteger {
 
@@ -19,42 +19,39 @@ public class FindThePivotInteger {
 	public static int pivotInteger(int n) {
 		int start = 0;
 		int end = n;
-		int mid = -1, sum1 = 0, sum2 = 0;
-		while (start <= end
-				&& (sum1 = (mid = (start + end) / 2) * (mid + 1) / 2) != (sum2 = n * (n + 1) / 2 - sum1 + mid)) {
+		int maxSum = n * (n + 1) / 2;
+		int sum1, sum2, mid;
+		do {
+			mid = (start + end) / 2;
+			sum1 = mid * (mid + 1) / 2;
+			sum2 = maxSum - sum1 + mid;
 			if (sum1 > sum2) {
 				end = mid - 1;
 			} else {
 				start = mid + 1;
 			}
-		}
-		return sum1 != sum2 ? -1 : mid;
+		} while (start <= end && sum1 != sum2);
+		return sum1 == sum2 ? mid : -1;
 	}
 
 	/**
-	 * Alternate solution, similar to the first one. Performs a little worse but is
-	 * more readable.
+	 * Alternatice solution which linearly test all numbers and keeps a left sum and
+	 * right sum at all times. At each step it increases the left sum and decreases
+	 * the right sum. Time complexity is O(n).
 	 * 
 	 * @param n
 	 * @return
 	 */
-	public static int pivotInteger2(int n) {
-		int start = 0;
-		int end = n;
-		int maxSum = n * (n + 1) / 2;
-		do {
-			int mid = (start + end) / 2;
-			int sum1 = mid * (mid + 1) / 2;
-			int sum2 = maxSum - sum1 + mid;
-			if (sum1 > sum2) {
-				end = mid - 1;
-			} else if (sum1 < sum2) {
-				start = mid + 1;
-			} else {
-				return mid;
-			}
-		} while (start <= end);
-		return -1;
+	public static int pivotInteger3(int n) {
+		int leftSum = 0;
+		int rightSum = n * (n + 1) / 2;
+		int candidatePivot = 0;
+		while (leftSum < rightSum) {
+			candidatePivot++;
+			leftSum = leftSum + candidatePivot;
+			rightSum = rightSum - candidatePivot + 1;
+		}
+		return leftSum == rightSum ? candidatePivot : -1;
 	}
 
 	private static void check(int n, int expected) {
