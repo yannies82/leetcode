@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.conversions;
 
 public class IntToRoman {
 
@@ -156,10 +156,86 @@ public class IntToRoman {
 		return builder.toString();
 	}
 
+	/**
+	 * Alternative solution using recursion. Time complexity is O(n) where n is the
+	 * number of digits of the number.
+	 * 
+	 * @param num
+	 * @return
+	 */
+	public static String intToRoman3(int num) {
+		StringBuilder builder = new StringBuilder();
+		intToRomanInternal(num, builder, 0);
+		return builder.toString();
+	}
+
+	public static void intToRomanInternal(int num, StringBuilder builder, int index) {
+		int div = num / 10;
+		if (div > 0) {
+			intToRomanInternal(div, builder, index + 1);
+		}
+		int mod = num % 10;
+		String unitChar;
+		String fiveChar;
+		String tenChar;
+		switch (index) {
+		case 0:
+			unitChar = "I";
+			fiveChar = "V";
+			tenChar = "X";
+			break;
+		case 1:
+			unitChar = "X";
+			fiveChar = "L";
+			tenChar = "C";
+			break;
+		case 2:
+			unitChar = "C";
+			fiveChar = "D";
+			tenChar = "M";
+			break;
+		default:
+			unitChar = "M";
+			fiveChar = "";
+			tenChar = "";
+			break;
+		}
+		switch (mod) {
+		case 9:
+			builder.append(unitChar).append(tenChar);
+			break;
+		case 8:
+			builder.append(fiveChar).append(unitChar).append(unitChar).append(unitChar);
+			break;
+		case 7:
+			builder.append(fiveChar).append(unitChar).append(unitChar);
+			break;
+		case 6:
+			builder.append(fiveChar).append(unitChar);
+			break;
+		case 5:
+			builder.append(fiveChar);
+			break;
+		case 4:
+			builder.append(unitChar).append(fiveChar);
+			break;
+		case 3:
+			builder.append(unitChar);
+		case 2:
+			builder.append(unitChar);
+		case 1:
+			builder.append(unitChar);
+			break;
+		default:
+			break;
+		}
+		;
+	}
+
 	private static void check(int num, String expectedRoman) {
 		System.out.println("num is: " + num);
 		System.out.println("expectedRoman is: " + expectedRoman);
-		String roman = intToRoman(num); // Calls your implementation
+		String roman = intToRoman3(num); // Calls your implementation
 		System.out.println("intToRoman is: " + roman);
 	}
 }

@@ -1,8 +1,12 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class KthDistinctStringInArray {
 
@@ -22,6 +26,37 @@ public class KthDistinctStringInArray {
 	 * @return
 	 */
 	public static String kthDistinct(String[] arr, int k) {
+		Set<String> distinct = new LinkedHashSet<>();
+		Set<String> nonDistinct = new HashSet<>();
+		for (int i = 0; i < arr.length; i++) {
+			if (!nonDistinct.contains(arr[i])) {
+				if (distinct.contains(arr[i])) {
+					distinct.remove(arr[i]);
+					nonDistinct.add(arr[i]);
+				} else {
+					distinct.add(arr[i]);
+				}
+			}
+		}
+		if (distinct.size() < k) {
+			return "";
+		}
+		int index = 0;
+		Iterator<String> distinctIter = distinct.iterator();
+		while (++index < k) {
+			distinctIter.next();
+		}
+		return distinctIter.next();
+	}
+
+	/**
+	 * Alternative solution. Time complexity is O(n) where n is the length of arr.
+	 * 
+	 * @param arr
+	 * @param k
+	 * @return
+	 */
+	public static String kthDistinct2(String[] arr, int k) {
 		Map<String, Boolean> duplicatesMap = new LinkedHashMap<>();
 		for (int i = 0; i < arr.length; i++) {
 			if (duplicatesMap.get(arr[i]) == null) {

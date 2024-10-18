@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.math;
 
 public class KthSmallestInLexicographicalOrder {
 

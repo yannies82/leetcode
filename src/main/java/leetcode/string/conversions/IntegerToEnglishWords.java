@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.conversions;
 
 public class IntegerToEnglishWords {
 
@@ -29,7 +29,7 @@ public class IntegerToEnglishWords {
 		// populate the builder with the result
 		numberToWordsRecursive(num, 0, builder);
 		// return result after skipping the first character which is always a space
-		return builder.substring(1).toString();
+		return builder.substring(1);
 	}
 
 	public static void numberToWordsRecursive(int num, int range, StringBuilder builder) {
@@ -42,7 +42,7 @@ public class IntegerToEnglishWords {
 		// populate the builder with the string of the less important digits
 		int mod = num % 1000;
 		if (mod > 0) {
-			threeDigitNumToWord(num % 1000, builder);
+			threeDigitNumToWord(mod, builder);
 			builder.append(rangeToWord(range));
 		}
 	}
