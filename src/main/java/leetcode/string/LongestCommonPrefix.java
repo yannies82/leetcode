@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 import java.util.Arrays;
 
@@ -24,14 +24,14 @@ public class LongestCommonPrefix {
 		String firstWord = strs[0];
 		int firstLength = firstWord.length();
 		for (int j = 0; j < firstLength; j++) {
+			char firstWordChar = firstWord.charAt(j);
 			for (int i = 1; i < length; i++) {
-				char firstWordChar = firstWord.charAt(j);
 				if (strs[i].length() <= j || strs[i].charAt(j) != firstWordChar) {
 					return firstWord.substring(0, j);
 				}
 			}
 		}
-		return firstWord.substring(0, firstLength);
+		return firstWord;
 	}
 
 	/**

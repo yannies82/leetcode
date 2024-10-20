@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.frequency;
 
 import java.util.Arrays;
 
@@ -12,7 +12,6 @@ public class LongestIdealSubsequence {
 	}
 
 	/**
-	 * Leetcode problem: https://leetcode.com/problems/longest-ideal-subsequence.
 	 * This solution keeps an array with the counts for all lowercase english
 	 * characters and updates it for every new character. Time complexity is O(n *
 	 * k) where n is the length of string s.
@@ -31,8 +30,8 @@ public class LongestIdealSubsequence {
 			int end = Math.min(index + k, 25);
 			// iterate all characters from k positions before till k positions
 			// after the current character and find the one with the highest count
-			int maxCount = 0;
-			for (int j = start; j <= end; j++) {
+			int maxCount = charCount[start];
+			for (int j = start + 1; j <= end; j++) {
 				if (charCount[j] > maxCount) {
 					maxCount = charCount[j];
 				}
@@ -58,7 +57,7 @@ public class LongestIdealSubsequence {
 	 * @param s
 	 * @return
 	 */
-	public static int longestIdealString2(String s, int k) {
+	public static int longestIdealString3(String s, int k) {
 		char[] chars = s.toCharArray();
 		int[] dpArray = new int[chars.length];
 		Arrays.fill(dpArray, 1);

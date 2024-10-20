@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class LengthOfLastWord {
 
@@ -16,6 +16,21 @@ public class LengthOfLastWord {
 	 * @return
 	 */
 	public static int lengthOfLastWord(String s) {
+		int index = s.length();
+		while (s.charAt(--index) == ' ');
+		int endIndex = index;
+		while (--index >= 0 && s.charAt(index) != ' ');
+		return endIndex - index;
+	}
+
+	/**
+	 * Alternative solution. Time complexity is O(n) where n is the length of string
+	 * s.
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static int lengthOfLastWord2(String s) {
 		int length = s.length();
 		int lastWordLength = 0;
 		for (int i = length - 1; i >= 0; i--) {

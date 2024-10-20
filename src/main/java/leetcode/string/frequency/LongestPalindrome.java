@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.frequency;
 
 public class LongestPalindrome {
 
@@ -27,7 +27,7 @@ public class LongestPalindrome {
 			totalChars += frequency[i];
 			// if the character's frequency is odd, then subtract 1 and add
 			// to the total chars
-			if (frequency[i] % 2 == 1) {
+			if ((frequency[i] & 1) == 1) {
 				oddFrequencyOffset = 1;
 				totalChars -= 1;
 			}
