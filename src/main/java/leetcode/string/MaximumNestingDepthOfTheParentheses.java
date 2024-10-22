@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class MaximumNestingDepthOfTheParentheses {
 
@@ -8,9 +8,11 @@ public class MaximumNestingDepthOfTheParentheses {
 	}
 
 	/**
-	 * Leetcode problem: This solution uses a counter which increases every time a
-	 * parenthesis is opened and decreases every time a parenthesis is closed. Time
-	 * complexity is O(n) where n is the length of string s.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses. This
+	 * solution uses a counter which increases every time a parenthesis is opened
+	 * and decreases every time a parenthesis is closed. Time complexity is O(n)
+	 * where n is the length of string s.
 	 * 
 	 * @param s
 	 * @return

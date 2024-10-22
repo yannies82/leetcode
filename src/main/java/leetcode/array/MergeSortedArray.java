@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array;
 
 import java.util.Arrays;
 
@@ -23,15 +23,14 @@ public class MergeSortedArray {
 	public static void merge(int[] nums1, int m, int[] nums2, int n) {
 		int i1 = m - 1;
 		int i2 = n - 1;
-		int pos;
+		int pos = i1 + i2 + 1;
 		// start merge from the end of both arrays and place elements at
 		// the end of the first array
 		while (i1 >= 0 && i2 >= 0) {
-			pos = i1 + i2 + 1;
 			if (nums1[i1] >= nums2[i2]) {
-				nums1[pos] = nums1[i1--];
+				nums1[pos--] = nums1[i1--];
 			} else {
-				nums1[pos] = nums2[i2--];
+				nums1[pos--] = nums2[i2--];
 			}
 		}
 		// if i2 >=0 set the remaining elements to the first array

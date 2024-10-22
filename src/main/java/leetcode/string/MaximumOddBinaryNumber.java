@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class MaximumOddBinaryNumber {
 
@@ -8,6 +8,7 @@ public class MaximumOddBinaryNumber {
 	}
 
 	/**
+	 * Leetcode problem: https://leetcode.com/problems/maximum-odd-binary-number.
 	 * This solution iterates the string to find the number of '1's then places them
 	 * to the left of the string except for one. Time complexity is O(n) where n is
 	 * the length of string s.
@@ -16,25 +17,24 @@ public class MaximumOddBinaryNumber {
 	 * @return
 	 */
 	public static String maximumOddBinaryNumber(String s) {
-		int length = s.length();
+		char[] chars = s.toCharArray();
 		int numOf1s = 0;
 		// count the number of 1s in the string s
-		for (int i = 0; i < length; i++) {
-			if (s.charAt(i) == '1') {
-				numOf1s++;
-			}
+		for (int i = 0; i < chars.length; i++) {
+			numOf1s += chars[i] - '0';
 		}
-		char[] chars = new char[length];
+		int numOf1sMinus1 = numOf1s - 1;
 		// place all 1s except for one at the most important digits
-		for (int i = 0; i < numOf1s - 1; i++) {
+		for (int i = 0; i < numOf1sMinus1; i++) {
 			chars[i] = '1';
 		}
 		// fill the rest of the positions with 0s
-		for (int i = numOf1s - 1; i < length - 1; i++) {
+		int lastIndex = chars.length - 1;
+		for (int i = numOf1sMinus1; i < lastIndex; i++) {
 			chars[i] = '0';
 		}
 		// fill the last digit
-		chars[length - 1] = numOf1s == 0 ? '0' : '1';
+		chars[lastIndex] = numOf1s == 0 ? '0' : '1';
 		return String.valueOf(chars);
 	}
 

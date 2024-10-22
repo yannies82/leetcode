@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -27,18 +27,14 @@ public class MaximizeHappinessOfSelectedChildren {
 	public static long maximumHappinessSum(int[] happiness, int k) {
 		Arrays.sort(happiness);
 		int lastIndex = happiness.length - 1;
-		int limit = lastIndex - k;
-		int offset = 0;
 		long sum = 0;
-		for (int i = lastIndex; i > limit; i--) {
-			int current = happiness[i] - offset;
+		for (int i = 0; i < k; i++) {
+			int current = happiness[lastIndex - i] - i;
 			if (current <= 0) {
-				// no point in proceeding to the next elements if this one <= 0
-				// since the next ones are sure to be <= 0 too
+				// all elements from now on will be less than 0
 				break;
 			}
 			sum += current;
-			offset++;
 		}
 		return sum;
 	}
