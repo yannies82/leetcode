@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.parentheses;
 
 public class MinimumRemoveToMakeValidParentheses {
 

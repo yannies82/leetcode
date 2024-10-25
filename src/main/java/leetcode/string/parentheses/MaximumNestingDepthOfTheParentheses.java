@@ -1,4 +1,4 @@
-package leetcode.string;
+package leetcode.string.parentheses;
 
 public class MaximumNestingDepthOfTheParentheses {
 

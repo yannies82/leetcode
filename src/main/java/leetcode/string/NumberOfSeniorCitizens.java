@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 import java.util.Arrays;
 
@@ -17,6 +17,15 @@ public class NumberOfSeniorCitizens {
 	 * @return
 	 */
 	public static int countSeniors(String[] details) {
+		int count = 0;
+		int offset = 11 * '0';
+		for (int i = 0; i < details.length; i++) {
+			count += (60 - (10 * details[i].charAt(11) + details[i].charAt(12) - offset)) >>> 31;
+		}
+		return count;
+	}
+	
+	public static int countSeniors2(String[] details) {
 		int count = 0;
 		for (int i = 0; i < details.length; i++) {
 			char ageMajor = details[i].charAt(11);

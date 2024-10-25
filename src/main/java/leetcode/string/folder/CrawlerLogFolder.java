@@ -1,4 +1,4 @@
-package leetcode.string;
+package leetcode.string.folder;
 
 import java.util.Arrays;
 

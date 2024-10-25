@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class NumberOfStepsToReduceANumberInBinaryRepresentationToOne {
 
@@ -19,11 +19,12 @@ public class NumberOfStepsToReduceANumberInBinaryRepresentationToOne {
 	 * @return
 	 */
 	public static int numSteps(String s) {
+		char[] chars = s.toCharArray();
 		int result = 0;
 		int carry = 0;
 		// iterate all digits from end to start
 		for (int i = s.length() - 1; i > 0; i--) {
-			if (s.charAt(i) - '0' + carry == 1) {
+			if (chars[i] - '0' + carry == 1) {
 				// if digit[i] + carry == 1 then an extra action should be performed
 				// (addition with 1) and the carry will always be 1 from now on
 				result++;
