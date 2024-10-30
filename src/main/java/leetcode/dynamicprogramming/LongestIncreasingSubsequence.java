@@ -26,22 +26,22 @@ public class LongestIncreasingSubsequence {
 		// this array keeps the longest subsequence
 		int[] result = new int[nums.length];
 		// index for the result array
-		int count = 0;
+		int index = -1;
 		// add the first number to the result
-		result[count++] = nums[0];
+		result[++index] = nums[0];
 		// iterate all numbers
 		for (int i = 1; i < nums.length; i++) {
 			int current = nums[i];
-			if (current > result[count - 1]) {
+			if (current > result[index]) {
 				// if current number is greater than the last one of the result
 				// add it to the result
-				result[count++] = current;
+				result[++index] = current;
 			} else {
 				// if current number is less than the last one of the result
 				// perform binary search to find the index of the result array
 				// where it should be placed
 				int left = 0;
-				int right = count - 1;
+				int right = index;
 				while (left < right) {
 					int mid = (left + right) / 2;
 					if (current > result[mid]) {
@@ -55,7 +55,7 @@ public class LongestIncreasingSubsequence {
 			}
 		}
 		// return the size of the result array
-		return count;
+		return index + 1;
 	}
 
 	/**
