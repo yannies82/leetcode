@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array;
 
 import java.util.Arrays;
 
@@ -10,10 +10,11 @@ public class RemoveDuplicatesFromSortedArray {
 	}
 
 	/**
-	 * This solution keeps two indexes, a traversal index and an insertion index.
-	 * Every time a new item is encountered, it is inserted where the insertion
-	 * index points. Time complexity is O(n) where n is the length of the nums
-	 * array.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/remove-duplicates-from-sorted-array. This
+	 * solution keeps two indexes, a traversal index and an insertion index. Every
+	 * time a new item is encountered, it is inserted where the insertion index
+	 * points. Time complexity is O(n) where n is the length of the nums array.
 	 * 
 	 * @param nums
 	 * @return

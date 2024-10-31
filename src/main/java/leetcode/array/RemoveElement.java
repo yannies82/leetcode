@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array;
 
 import java.util.Arrays;
 
@@ -20,18 +20,18 @@ public class RemoveElement {
 	 */
 	public static int removeElement(int[] nums, int val) {
 		int i = 0;
-		int count = 0;
 		int length = nums.length;
-		while (i < length - count) {
+		int endIndex = length - 1;
+		while (i <= endIndex) {
 			if (nums[i] == val) {
 				// copy element to the end of the array, increase count of copied elements
-				nums[i] = nums[length - ++count];
+				nums[i] = nums[endIndex--];
 			} else {
 				// element is not val, increase index
 				i++;
 			}
 		}
-		return length - count;
+		return endIndex + 1;
 	}
 
 	private static void check(int[] nums, int val, int[] expected) {
