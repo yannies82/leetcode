@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class ReverseWordsInString {
 
@@ -9,6 +9,52 @@ public class ReverseWordsInString {
 
 	/**
 	 * Leetcode problem: https://leetcode.com/problems/reverse-words-in-a-string.
+	 * This solution uses recursion to write the words to the builder in reverse
+	 * order. Time complexity is O(n) where n is the length of string s.
+	 * 
+	 * @param s
+	 * @return
+	 */
+	public static String reverseWords(String s) {
+		char[] chars = s.toCharArray();
+		StringBuilder builder = new StringBuilder();
+		// skip all leading spaces
+		int start = 0;
+		while (start < chars.length && chars[start] == ' ') {
+			start++;
+		}
+		// reverse words recursively
+		reverseRecursive(chars, start, builder);
+		// delete last trailing space after reverse
+		builder.deleteCharAt(builder.length() - 1);
+		return builder.toString();
+	}
+
+	private static void reverseRecursive(char[] chars, int start, StringBuilder builder) {
+		if (start == chars.length) {
+			// no more words, return
+			return;
+		}
+		int i = start;
+		// skip until a space is encountered
+		while (i < chars.length && chars[i] != ' ') {
+			i++;
+		}
+		// mark the end of the word and skip the rest of the spaces
+		int end = i;
+		while (i < chars.length && chars[i] == ' ') {
+			i++;
+		}
+		// recursively append the next words
+		reverseRecursive(chars, i, builder);
+		// append this word after the next ones have been appended
+		for (int j = start; j < end; j++) {
+			builder.append(chars[j]);
+		}
+		builder.append(' ');
+	}
+
+	/**
 	 * This solution traverses the string from end to start and writes all
 	 * encountered words to the result builder. Time complexity is O(n) where n is
 	 * the length of string s.
@@ -16,7 +62,7 @@ public class ReverseWordsInString {
 	 * @param s
 	 * @return
 	 */
-	public static String reverseWords(String s) {
+	public static String reverseWords2(String s) {
 		int length = s.length();
 		StringBuilder result = new StringBuilder();
 		int wordEndIndex = -1;
@@ -52,7 +98,7 @@ public class ReverseWordsInString {
 		return result.toString();
 	}
 
-	public static String reverseWords2(String s) {
+	public static String reverseWords3(String s) {
 		int length = s.length();
 		StringBuilder result = new StringBuilder();
 		int wordEndIndex = -1;

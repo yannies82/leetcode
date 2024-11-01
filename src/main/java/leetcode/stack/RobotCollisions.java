@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.stack;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
