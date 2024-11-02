@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class ShortestPalindrome {
 
@@ -39,7 +39,7 @@ public class ShortestPalindrome {
 			while (currentIndex >= 0 && chars[currentIndex] == mid) {
 				currentIndex--;
 			}
-			// decrease endIndex while the character remains the same
+			// increase endIndex while the character remains the same
 			while (endIndex < chars.length && chars[endIndex] == mid) {
 				endIndex++;
 			}

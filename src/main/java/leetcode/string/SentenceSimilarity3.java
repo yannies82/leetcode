@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class SentenceSimilarity3 {
 
@@ -9,6 +9,7 @@ public class SentenceSimilarity3 {
 		check("Luky", "Lucccky", false);
 		check("C", "CB B C", true);
 		check("B", "Best practice", false);
+		check("Barry", "Better yourself to carry", false);
 		check("Aa AAaAaaAaaaAaAAaAA aaaAaAaAAaAaaAA", "Aa AA", false);
 	}
 
@@ -48,7 +49,7 @@ public class SentenceSimilarity3 {
 		// 2) the larger sentence ends with the full smaller sentence and its previous
 		// character is a space
 		// 3) the larger sentence starts with a part of the smaller sentence and ends
-		// with the rest of the smaller sentence
+		// with the rest of the smaller sentence, separated by a space
 		return (indexLeft == limit && (largerLength == limit || larger.charAt(limit) == ' '))
 				|| (indexRight == limit && (largerLength == limit || larger.charAt(largerLength - limit - 1) == ' '))
 				|| (indexLeft < limit && indexRight < limit && indexLeft + indexRight - 1 >= limit);

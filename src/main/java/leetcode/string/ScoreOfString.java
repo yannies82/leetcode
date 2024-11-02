@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 public class ScoreOfString {
 
@@ -16,8 +16,12 @@ public class ScoreOfString {
 	 */
 	public static int scoreOfString(String s) {
 		int result = 0;
-		for (int i = 1; i < s.length(); i++) {
-			result += Math.abs(s.charAt(i) - s.charAt(i - 1));
+		int length = s.length();
+		char prev = s.charAt(0);
+		for (int i = 1; i < length; i++) {
+			char current = s.charAt(i);
+			result += Math.abs(current - prev);
+			prev = current;
 		}
 		return result;
 	}

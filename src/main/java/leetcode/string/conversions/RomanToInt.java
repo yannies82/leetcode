@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.conversions;
 
 public class RomanToInt {
 
@@ -21,21 +21,29 @@ public class RomanToInt {
 	public static int romanToInt(String s) {
 		int length = s.length();
 		int sum = 0;
-		for (int i = 0; i < length; i++) {
+		char prev = s.charAt(0);
+		for (int i = 1; i < length; i++) {
 			// calculate character value and add to the total sum
 			// for I, X, C also check the next character
-			sum += switch (s.charAt(i)) {
-			case 'I' -> (i == length - 1 || (s.charAt(i + 1) != 'V' && s.charAt(i + 1) != 'X')) ? 1 : -1;
-			case 'V' -> 5;
-			case 'X' -> (i == length - 1 || (s.charAt(i + 1) != 'L' && s.charAt(i + 1) != 'C')) ? 10 : -10;
-			case 'L' -> 50;
-			case 'C' -> (i == length - 1 || (s.charAt(i + 1) != 'D' && s.charAt(i + 1) != 'M')) ? 100 : -100;
-			case 'D' -> 500;
-			case 'M' -> 1000;
-			default -> throw new IllegalArgumentException("Unexpected value: " + s.charAt(i));
-			};
+			char current = s.charAt(i);
+			sum += calculateValue(prev, current);
+			prev = current;
 		}
+		sum += calculateValue(prev, ' ');
 		return sum;
+	}
+
+	private static int calculateValue(char prev, char current) {
+		return switch (prev) {
+		case 'I' -> current != 'V' && current != 'X' ? 1 : -1;
+		case 'V' -> 5;
+		case 'X' -> current != 'L' && current != 'C' ? 10 : -10;
+		case 'L' -> 50;
+		case 'C' -> current != 'D' && current != 'M' ? 100 : -100;
+		case 'D' -> 500;
+		case 'M' -> 1000;
+		default -> throw new IllegalArgumentException("Unexpected value: " + prev);
+		};
 	}
 
 	private static void check(String roman, int expectedNumber) {
