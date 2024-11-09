@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,46 +33,58 @@ public class TextJustification {
 	 */
 	public static List<String> fullJustify(String[] words, int maxWidth) {
 		int wordsCount = words.length;
+		int lastWordIndex = wordsCount - 1;
 		int currentWidth = 0;
 		List<String> result = new ArrayList<>();
 		StringBuilder builder = new StringBuilder();
 		int startIndex = 0;
 		// traverse all words
-		for (int i = 0; i < wordsCount; i++) {
+		for (int i = 0; i < lastWordIndex; i++) {
 			currentWidth += words[i].length();
-			// check if this is the last word or if adding the next word will exceed the
-			// maxWidth for this line
-			// (taking ito consideration one space between words as minimum)
-			if (i == wordsCount - 1 || currentWidth + words[i + 1].length() + i + 1 - startIndex > maxWidth) {
-				// either this is the last word or adding the next word will exceed the maxWidth
-				// for this line (taking ito consideration one space between words as minimum)
-				int numOfWords = i + 1 - startIndex;
+			int nextIndex = i + 1;
+			if (currentWidth + words[nextIndex].length() + nextIndex - startIndex > maxWidth) {
+				// adding the next word will exceed the maxWidth for this line
+				// (taking into consideration one space between words as minimum)
+				// therefore add a new line to the result now
+				int numOfWords = nextIndex - startIndex;
 				int numOfSpaces = maxWidth - currentWidth;
 				int spacesPerWord = numOfWords == 1 ? 0 : numOfSpaces / (numOfWords - 1);
 				int leftoverSpaces = numOfWords == 1 ? 0 : numOfSpaces % (numOfWords - 1);
-				for (int j = startIndex; j <= i; j++) {
+				int extraSpaceLimitIndex = startIndex + leftoverSpaces;
+				for (int j = startIndex; j < i; j++) {
 					// append all words and spaces between
 					builder.append(words[j]);
-					if (i == wordsCount - 1) {
-						if (builder.length() < maxWidth) {
-							builder.append(" ");
-						}
-					} else if (j < i) {
-						int totalSpaces = spacesPerWord + (j - startIndex < leftoverSpaces ? 1 : 0);
-						for (int k = 0; k < totalSpaces; k++) {
-							builder.append(" ");
-						}
+					// count an extra space for the first words until leftoverSpaces are exhausted
+					int totalSpaces = spacesPerWord + (((j - extraSpaceLimitIndex) >>> 31) & 1);
+					for (int k = 0; k < totalSpaces; k++) {
+						builder.append(" ");
 					}
 				}
+				// append last word of the line
+				builder.append(words[i]);
+				// fill with spaces on the right, if needed
 				for (int k = builder.length(); k < maxWidth; k++) {
 					builder.append(" ");
 				}
 				result.add(builder.toString());
 				builder.setLength(0);
 				currentWidth = 0;
-				startIndex = i + 1;
+				startIndex = nextIndex;
 			}
 		}
+		// this is the last line, just add a single space between words
+		// and pad with spaces on the right
+		for (int j = startIndex; j < lastWordIndex; j++) {
+			// append all words and spaces between
+			builder.append(words[j]).append(" ");
+		}
+		// append last word of the line
+		builder.append(words[lastWordIndex]);
+		// fill with spaces on the right, if needed
+		for (int k = builder.length(); k < maxWidth; k++) {
+			builder.append(" ");
+		}
+		result.add(builder.toString());
 		return result;
 	}
 

@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.array.frequency;
 
 import java.util.Arrays;
 
@@ -24,7 +24,7 @@ public class SpecialArrayWithXelementsGreaterThanOrEqualX {
 	 */
 	public static int specialArray(int[] nums) {
 		// generate and populate the frequency array
-		int[] frequency = new int[1001];
+		int[] frequency = new int[101];
 		for (int i = 0; i < nums.length; i++) {
 			// if nums[i] is greater than nums.length, aggregate the value to nums.length
 			frequency[Math.min(nums[i], nums.length)]++;
