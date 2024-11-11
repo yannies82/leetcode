@@ -1,27 +1,56 @@
-package leetcode.arraystring;
+package leetcode.twopointers;
 
 import java.util.Arrays;
 
 public class TrapRainWater {
 
 	public static void main(String[] args) {
+		check(new int[] { 1, 2, 3, 2, 1 }, 0);
 		check(new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 }, 6);
 		check(new int[] { 4, 2, 0, 3, 2, 5 }, 9);
 	}
 
 	/**
 	 * Leetcode problem: https://leetcode.com/problems/trapping-rain-water. This
-	 * solution iterates all heights and calculates the trapped rain water assuming
-	 * that there is a wall of infinite height at the end of the heights array. It
-	 * then iterates the heights array again in reverse order up to the index of the
-	 * maxHeight in order to calculate the correct trap water for this section and
-	 * compensate for the assumption of the infinite wall. Time complexity is O(n)
-	 * where n is the length of the heigths array.
+	 * solution uses two pointers to traverse the array of height, each time using
+	 * the pointer from the side with the less height. Time complexity is O(n) where
+	 * n is the length of the height array.
 	 * 
 	 * @param height
 	 * @return
 	 */
 	public static int trap(int[] height) {
+		int left = 0;
+		int right = height.length - 1;
+		int result = 0;
+		int leftHeight = height[left];
+		int rightHeight = height[right];
+		while (left < right) {
+			if (leftHeight < rightHeight) {
+				left++;
+				leftHeight = Math.max(leftHeight, height[left]);
+				result += leftHeight - height[left];
+			} else {
+				right--;
+				rightHeight = Math.max(rightHeight, height[right]);
+				result += rightHeight - height[right];
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * This solution iterates all heights and calculates the trapped rain water
+	 * assuming that there is a wall of infinite height at the end of the heights
+	 * array. It then iterates the heights array again in reverse order up to the
+	 * index of the maxHeight in order to calculate the correct trap water for this
+	 * section and compensate for the assumption of the infinite wall. Time
+	 * complexity is O(n) where n is the length of the height array.
+	 * 
+	 * @param height
+	 * @return
+	 */
+	public static int trap2(int[] height) {
 		int length = height.length;
 		int topIndex = -1;
 		int topHeight = 0;
@@ -69,5 +98,7 @@ public class TrapRainWater {
 		System.out.println("expectedTrappedAmount is: " + expectedTrappedAmount);
 		int trappedAmount = trap(height); // Calls your implementation
 		System.out.println("trappedAmount is: " + trappedAmount);
+		trappedAmount = trap2(height); // Calls your implementation
+		System.out.println("trappedAmount2 is: " + trappedAmount);
 	}
 }

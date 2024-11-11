@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.greedy;
 
 public class TwoKeysKeyboard {
 

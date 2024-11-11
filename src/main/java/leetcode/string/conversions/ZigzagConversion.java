@@ -1,4 +1,4 @@
-package leetcode.arraystring;
+package leetcode.string.conversions;
 
 public class ZigzagConversion {
 
