@@ -21,16 +21,50 @@ public class Permutations {
 
 	/**
 	 * Leetcode problem: https://leetcode.com/problems/permutations. This solution
-	 * traverses recursively all eligible numbers and keeps the results in a builder
-	 * array. A usedIndexes array is used to mark which indexes have been used in
-	 * the current traversal. Every time the last level is reached, a list is built
-	 * from the builder array and is added to the results. Time complexity is O(N^N)
-	 * where N is the size of the nums array.
+	 * changes the order of the elements in the nums array to create the different
+	 * permutations, then backtracks to restore the changes. Time complexity is
+	 * O(n*n!) where n is the size of the nums array.
 	 * 
 	 * @param nums
 	 * @return
 	 */
 	public static List<List<Integer>> permute(int[] nums) {
+		List<List<Integer>> result = new ArrayList<>();
+		permuteRecursive(nums, 0, result);
+		return result;
+	}
+
+	public static void permuteRecursive(int[] nums, int start, List<List<Integer>> result) {
+		if (start == nums.length) {
+			List<Integer> list = new ArrayList<>();
+			for (int num : nums) {
+				list.add(num);
+			}
+			result.add(list);
+			return;
+		}
+
+		for (int i = start; i < nums.length; i++) {
+			int temp = nums[i];
+			nums[i] = nums[start];
+			nums[start] = temp;
+			permuteRecursive(nums, start + 1, result);
+			nums[start] = nums[i];
+			nums[i] = temp;
+		}
+	}
+
+	/**
+	 * This solution traverses recursively all eligible numbers and keeps the
+	 * results in a builder array. A usedIndexes array is used to mark which indexes
+	 * have been used in the current traversal. Every time the last level is
+	 * reached, a list is built from the builder array and is added to the results.
+	 * Time complexity is O(n*n!) where n is the size of the nums array.
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public static List<List<Integer>> permute2(int[] nums) {
 		// keeps the current permutation
 		int[] builderArray = new int[nums.length];
 		// keeps used indexes for the current traversal
@@ -40,21 +74,21 @@ public class Permutations {
 		// recursively traverse the numbers from 0 to n-1
 		// and fill the results list
 		for (int i = 0; i < nums.length; i++) {
-			permuteRecursive(nums, i, 0, builderArray, usedIndexes, results);
+			permuteRecursive2(nums, i, 1, builderArray, usedIndexes, results);
 		}
 		return results;
 	}
 
-	private static void permuteRecursive(int[] nums, int i, int level, int[] builderArray, boolean[] usedIndexes,
+	private static void permuteRecursive2(int[] nums, int i, int level, int[] builderArray, boolean[] usedIndexes,
 			List<List<Integer>> results) {
 		// set the number at index i to the builder array using the level as index
 		builderArray[level] = nums[i];
 		usedIndexes[i] = true;
-		if (level == nums.length - 1) {
+		if (level == nums.length) {
 			// this is the last level, therefore the last digit of an eligible permutation
 			// build a list from the builder array and add to the results
 			List<Integer> result = new ArrayList<>();
-			for (int l = 0; l < nums.length; l++) {
+			for (int l = 1; l <= nums.length; l++) {
 				result.add(builderArray[l]);
 			}
 			results.add(result);
@@ -66,7 +100,7 @@ public class Permutations {
 				// and perform a recursive call
 				// only for non traversed indexes
 				if (!usedIndexes[j]) {
-					permuteRecursive(nums, j, level + 1, builderArray, usedIndexes, results);
+					permuteRecursive2(nums, j, level + 1, builderArray, usedIndexes, results);
 				}
 			}
 		}
@@ -79,5 +113,7 @@ public class Permutations {
 		System.out.println("expected is: " + expected);
 		List<List<Integer>> permute = permute(nums); // Calls your implementation
 		System.out.println("permute is: " + permute);
+		List<List<Integer>> permute2 = permute2(nums); // Calls your implementation
+		System.out.println("permute2 is: " + permute2);
 	}
 }

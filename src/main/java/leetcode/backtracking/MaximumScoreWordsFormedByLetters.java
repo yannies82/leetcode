@@ -64,16 +64,16 @@ public class MaximumScoreWordsFormedByLetters {
 		int wordScore = 0;
 		// marks the index of the word letter for restoring when backtracking
 		int indexToRestore = 0;
+		int length = words[index].length();
 		// iterate all letters of this word
-		for (int i = 0; i < words[index].length(); i++) {
-			char c = words[index].charAt(i);
-			int charIndex = c - 'a';
+		for (int i = 0; i < length; i++) {
+			int charIndex = words[index].charAt(i) - 'a';
 			lettersFrequency[charIndex]--;
-			indexToRestore = i;
 			if (lettersFrequency[charIndex] < 0) {
 				// this letter is no longer available, this word should be skipped
 				// because we cannot calculate the score for it
 				canSelect = false;
+				indexToRestore = i;
 				break;
 			}
 			wordScore += score[charIndex];
@@ -82,6 +82,7 @@ public class MaximumScoreWordsFormedByLetters {
 			// if the score for this word can be calculated, add it to the current score
 			// and proceed with the score calculation from the next word
 			// otherwise skip this word
+			indexToRestore = length - 1;
 			calculateWordsScore(words, lettersFrequency, score, index + 1, wordScore + currentScore, scores);
 		}
 		// after the calculation of the score backtrack by restoring the frequency
