@@ -31,7 +31,7 @@ public class SumOfAllSubsetXorTotals {
 	/**
 	 * Iterative solution. Considering the length of the nums array as n, this
 	 * solution uses all numbers from 0 to 2^n as bit masks in order to generate
-	 * alla possible combinations. Time complexity is O(n*2^n).
+	 * all possible combinations. Time complexity is O(n*2^n).
 	 * 
 	 * @param nums
 	 * @return
