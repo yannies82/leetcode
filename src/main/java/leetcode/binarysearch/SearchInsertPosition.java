@@ -37,6 +37,31 @@ public class SearchInsertPosition {
 		return searchRecursive(nums, mid, end, target);
 	}
 
+	/**
+	 * Iterative solution. Time complexity is O(logN) where N is the length of the
+	 * array.
+	 * 
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+	public static int searchInsert2(int[] nums, int target) {
+		int start = 0;
+		int end = nums.length;
+		while (start < end) {
+			int mid = (start + end) / 2;
+			if (nums[mid] == target) {
+				return mid;
+			}
+			if (target < nums[mid]) {
+				end = mid;
+			} else {
+				start = mid + 1;
+			}
+		}
+		return start;
+	}
+
 	private static void check(int[] nums, int target, int expected) {
 		System.out.println("nums is: " + Arrays.toString(nums));
 		System.out.println("target is: " + target);
