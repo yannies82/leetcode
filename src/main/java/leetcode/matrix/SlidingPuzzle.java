@@ -72,7 +72,7 @@ public class SlidingPuzzle {
 					int nextIndex = ALLOWED_MOVES[zeroIndex][j];
 					// given the next position of 0 generate the next number from the current one
 					int nextDigit = (current[0] / FACTORS[nextIndex]) % 10;
-					int nextNumber = current[0] - nextDigit * FACTORS[nextIndex] + nextDigit * FACTORS[zeroIndex];
+					int nextNumber = current[0] + nextDigit * (FACTORS[zeroIndex] - FACTORS[nextIndex]);
 					if (!visited.contains(nextNumber)) {
 						// only add to the queue numbers which are not visited yet
 						visited.add(nextNumber);
