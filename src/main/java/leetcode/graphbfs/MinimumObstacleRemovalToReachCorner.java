@@ -44,8 +44,8 @@ public class MinimumObstacleRemovalToReachCorner {
 			int columnIndex = current[1];
 			// attempt all possible transitions
 			for (int i = 0; i < transitions.length; i++) {
-				int nextRowIndex = current[0] + transitions[i][0];
-				int nextColumnIndex = current[1] + transitions[i][1];
+				int nextRowIndex = rowIndex + transitions[i][0];
+				int nextColumnIndex = columnIndex + transitions[i][1];
 				if (nextRowIndex >= 0 && nextRowIndex < m && nextColumnIndex >= 0 && nextColumnIndex < n) {
 					// discard transitions which lead out of the array bounds
 					int newDistance = minDistance[rowIndex][columnIndex] + grid[nextRowIndex][nextColumnIndex];
