@@ -10,7 +10,10 @@ public class MinimumAbsoluteDifferenceInBST {
 	}
 
 	/**
-	 * Recursive solution, using inorder traversal.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/minimum-absolute-difference-in-bst. Recursive
+	 * solution, using inorder traversal. Time complexity is O(n) where n is the
+	 * number of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return

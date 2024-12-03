@@ -10,7 +10,9 @@ public class ValidateBST {
 	}
 
 	/**
-	 * Recursive solution, using inorder traversal.
+	 * Leetcode problem: https://leetcode.com/problems/validate-binary-search-tree.
+	 * Recursive solution, using inorder traversal. Time complexity is O(n) where n
+	 * is the number of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return

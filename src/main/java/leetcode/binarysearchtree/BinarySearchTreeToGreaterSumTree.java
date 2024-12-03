@@ -35,9 +35,8 @@ public class BinarySearchTreeToGreaterSumTree {
 			return;
 		}
 		visitInorder(node.right, sum);
-		int val = node.val;
 		node.val += sum[0];
-		sum[0] += val;
+		sum[0] += node.val;
 		visitInorder(node.left, sum);
 	}
 

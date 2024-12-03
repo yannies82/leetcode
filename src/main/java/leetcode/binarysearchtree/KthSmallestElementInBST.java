@@ -11,7 +11,10 @@ public class KthSmallestElementInBST {
 	}
 
 	/**
-	 * Recursive solution, using inorder traversal.
+	 * Leetcode problem:
+	 * https://leetcode.com/problems/kth-smallest-element-in-a-bst. Recursive
+	 * solution, using inorder traversal. Time complexity is O(n) where n is the
+	 * number of nodes in the tree.
 	 * 
 	 * @param root
 	 * @return
