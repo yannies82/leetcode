@@ -48,7 +48,7 @@ public class BinaryTreeRightSideView {
 	private static void traversePostOrder(TreeNode node, int level, int[] maxLevel, List<Integer> rightView) {
 
 		if (level > maxLevel[0]) {
-			// the current level is greater then the max level
+			// the current level is greater than the max level
 			// add it to the list and update the max level
 			rightView.add(node.val);
 			maxLevel[0] = level;
