@@ -23,7 +23,8 @@ public class ReplaceWords {
 	public static String replaceWords(List<String> dictionary, String sentence) {
 		// create root trie node and add all words
 		Node root = new Node();
-		for (int i = 0; i < dictionary.size(); i++) {
+		int dictionarySize = dictionary.size();
+		for (int i = 0; i < dictionarySize; i++) {
 			addWord(root, dictionary.get(i));
 		}
 		// initialize string builder
