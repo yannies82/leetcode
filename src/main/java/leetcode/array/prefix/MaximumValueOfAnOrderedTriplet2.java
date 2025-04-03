@@ -2,7 +2,7 @@ package leetcode.array.prefix;
 
 import java.util.Arrays;
 
-public class MaximumValueOfAnOrderedTriplet1 {
+public class MaximumValueOfAnOrderedTriplet2 {
 
     public static void main(String[] args) {
         check(new int[]{12, 6, 1, 2, 7}, 77);
@@ -12,7 +12,7 @@ public class MaximumValueOfAnOrderedTriplet1 {
     }
 
     /**
-     * Leetcode problem: https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-i.
+     * Leetcode problem: https://leetcode.com/problems/maximum-value-of-an-ordered-triplet-ii.
      * This solution calculates the max value for each position, updating the diff on each step.
      * Time complexity is O(n) where n is the length of the nums array.
      *
@@ -56,31 +56,6 @@ public class MaximumValueOfAnOrderedTriplet1 {
         }
         // return 0 if result < 0, otherwise return result
         return ((result >>> 63) - 1) & result;
-    }
-
-    /**
-     * Naive solution with a triple loop to iterate all possible combinations.
-     * Time complexity is O(n^3) where n is the length of the nums array.
-     *
-     * @param nums
-     * @return
-     */
-    public static long maximumTripletValue3(int[] nums) {
-        long result = 0;
-        int limitI = nums.length - 2;
-        int limitJ = nums.length - 1;
-        for (int i = 0; i < limitI; i++) {
-            for (int j = i + 1; j < limitJ; j++) {
-                long diff = nums[i] - nums[j];
-                if (diff <= 0) {
-                    continue;
-                }
-                for (int k = j + 1; k < nums.length; k++) {
-                    result = Math.max(result, diff * nums[k]);
-                }
-            }
-        }
-        return result;
     }
 
     private static void check(int[] nums, long expected) {
