@@ -23,7 +23,7 @@ public class LetterTilePossibilities {
 	public static int numTilePossibilities(String tiles) {
 		// convert tiles String to an array of chars and sort the array, so that it's
 		// easy to detect duplicates
-		char tilesChars[] = tiles.toCharArray();
+		char[] tilesChars = tiles.toCharArray();
 		Arrays.sort(tilesChars);
 		// keeps track of used tile chars
 		boolean[] usedTilesChars = new boolean[tilesChars.length];
