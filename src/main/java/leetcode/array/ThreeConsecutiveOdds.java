@@ -18,6 +18,15 @@ public class ThreeConsecutiveOdds {
 	 */
 	public static boolean threeConsecutiveOdds(int[] arr) {
 		int count = 0;
+		for (int i = 0; i < arr.length && count < 3; i++) {
+			int lastDigit = arr[i] & 1;
+			count = ((-lastDigit) & count) + lastDigit;
+		}
+		return count == 3;
+	}
+
+	public static boolean threeConsecutiveOdds2(int[] arr) {
+		int count = 0;
 		for (int i = 0; i < arr.length; i++) {
 			if (arr[i] % 2 == 1) {
 				if (count == 2) {
