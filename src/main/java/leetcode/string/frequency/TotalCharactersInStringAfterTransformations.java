@@ -71,10 +71,10 @@ public class TotalCharactersInStringAfterTransformations {
         return (int) result;
     }
 
-    private static void check(String s, int t, int expectedLastWordLength) {
+    private static void check(String s, int t, int expected) {
         System.out.println("s is: " + s);
         System.out.println("t is: " + t);
-        System.out.println("expectedLastWordLength is: " + expectedLastWordLength);
+        System.out.println("expected is: " + expected);
         int lengthAfterTransformations = lengthAfterTransformations(s, t); // Calls your implementation
         System.out.println("lengthAfterTransformations is: " + lengthAfterTransformations);
     }
