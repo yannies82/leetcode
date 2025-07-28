@@ -36,6 +36,10 @@ public class CountNumberOfMaximumBitwiseOrSubsets {
 			// return 1 if currentOr == maxOr, 0 otherwise
 			return 1 - ((currentOr - maxOr) >>> 31);
 		}
+        if (currentOr == maxOr) {
+            // all other subarrays from this point on will have currentOr == maxOr
+            return 1 << (nums.length - i);
+        }
 		// continue to the next index, add the results of selecting the current element
 		// and not selecting the current element for the OR calculation
 		return search(nums, maxOr, i + 1, currentOr) + search(nums, maxOr, i + 1, currentOr | nums[i]);
